@@ -1,0 +1,79 @@
+name: 🎬 Cloud Video Renderer
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Select render target'
+        required: true
+        default: 'latest'
+        type: choice
+        options:
+          - 'latest'
+          - 'all'
+          - 'samples'
+          - 'alex_talking_demo'
+      custom_project:
+        description: 'Or enter exact project folder name in video_output/ (leave blank for above selection)'
+        required: false
+        default: ''
+        type: string
+  push:
+    paths:
+      - 'video_output/**/code/**'
+      - 'video_output/**/audio/**'
+      - '.github/workflows/render.yml'
+    branches:
+      - main
+
+jobs:
+  render:
+    name: ⚡ Render Video in Cloud
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 📦 Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 🟢 Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 📦 Install Root & Remotion Dependencies
+        run: |
+          npm install
+
+      - name: 🎞️ Install FFmpeg & Headless Browser Libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libnss3 libatk-bridge2.0-0 libdrm2 libxkbcommon0 libgbm1 libasound2 fonts-noto-color-emoji fonts-dejavu fonts-freefont-ttf
+
+      - name: 🎬 Run Cloud Video Render
+        run: |
+          TARGET="${{ inputs.custom_project != '' && inputs.custom_project || inputs.target || 'latest' }}"
+          echo "Render Target: $TARGET"
+          python scripts/cloud_render.py --target "$TARGET"
+
+      - name: 📤 Upload Rendered Videos as Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-rendered-video
+          path: |
+            exports/*.mp4
+            video_output/**/output/*.mp4
+          if-no-files-found: warn
+          retention-days: 14

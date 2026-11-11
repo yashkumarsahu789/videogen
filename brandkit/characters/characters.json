@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "characters": {
+    "alex": {
+      "id": "alex",
+      "name": "Alex",
+      "title": "The Vibe Coder & Tech Creator",
+      "voice_id": "aarav",
+      "voice_name": "Aarav",
+      "style": "Slate hoodie, glasses, cyan accents",
+      "language": "Hinglish / Hindi",
+      "component_file": "alex/AlexCharacter.tsx"
+    },
+    "maya": {
+      "id": "maya",
+      "name": "Maya",
+      "title": "The AI Creative Director",
+      "voice_id": "ananya",
+      "voice_name": "Ananya",
+      "style": "Cyber high-collar jacket, violet hair, magenta accents",
+      "language": "Hinglish / Hindi",
+      "component_file": "maya/MayaCharacter.tsx"
+    },
+    "kabir": {
+      "id": "kabir",
+      "name": "Kabir",
+      "title": "The Deep Explainer & Documentary Lead",
+      "voice_id": "kabir",
+      "voice_name": "Kabir",
+      "style": "Charcoal turtleneck & blazer, chiseled beard, gold pin",
+      "language": "Hindi / English",
+      "component_file": "kabir/KabirCharacter.tsx"
+    },
+    "riya": {
+      "id": "riya",
+      "name": "Riya",
+      "title": "The Lifestyle & Community Creator",
+      "voice_id": "riya",
+      "voice_name": "Riya",
+      "style": "Mustard sweater, white collar, wavy chestnut hair, blush",
+      "language": "Hindi / English",
+      "component_file": "riya/RiyaCharacter.tsx"
+    },
+    "dev": {
+      "id": "dev",
+      "name": "Dev",
+      "title": "The 30-Second Speed Coder & Hacker",
+      "voice_id": "dev",
+      "voice_name": "Dev",
+      "style": "Techwear bomber, gaming headphones, neon green hair spikes",
+      "language": "Hinglish / English",
+      "component_file": "dev/DevCharacter.tsx"
+    }
+  }
+}
+

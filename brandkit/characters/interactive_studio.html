@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Studio — Universal 5-Character & Voice Suite</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #07090E;
+      color: #F8FAFC;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: 34px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #38BDF8, #818CF8, #EC4899, #F59E0B, #10B981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+    header p {
+      color: #94A3B8;
+      font-size: 15px;
+      margin-top: 6px;
+    }
+    .studio-container {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 24px;
+      max-width: 1260px;
+      width: 100%;
+    }
+    .stage-card {
+      background: #0F172A;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+    .char-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 15px;
+      justify-content: center;
+    }
+    .char-tabs button {
+      padding: 9px 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94A3B8;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .char-tabs button:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+    }
+    .char-tabs button.active {
+      color: #000;
+      font-weight: 800;
+    }
+    .char-tabs button.tab-alex.active { background: #38BDF8; border-color: #38BDF8; }
+    .char-tabs button.tab-maya.active { background: #EC4899; border-color: #EC4899; }
+    .char-tabs button.tab-kabir.active { background: #F59E0B; border-color: #F59E0B; }
+    .char-tabs button.tab-riya.active { background: #10B981; border-color: #10B981; }
+    .char-tabs button.tab-dev.active { background: #34D399; border-color: #34D399; }
+
+    .character-view {
+      width: 100%;
+      height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(15, 23, 42, 0) 70%);
+      border-radius: 20px;
+      position: relative;
+      transition: background 0.3s ease;
+    }
+    .controls-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .panel-section {
+      background: #0F172A;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 18px;
+    }
+    .panel-section h3 {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #38BDF8;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    button.control-btn {
+      background: rgba(255, 255, 255, 0.06);
+      color: #E2E8F0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button.control-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+    button.control-btn.active {
+      background: #38BDF8;
+      color: #000;
+      font-weight: 800;
+    }
+    .play-banner {
+      width: 100%;
+      margin-top: 15px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .audio-subtitle {
+      font-size: 16px;
+      color: #FFFFFF;
+      font-weight: 700;
+      min-height: 24px;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .roster-card {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .roster-card:hover, .roster-card.active {
+      border-color: #38BDF8;
+      background: rgba(56, 189, 248, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎭 AI Studio Universal 5-Character & Voice Suite</h1>
+    <p>Permanent Voice & Face Binding Matrix · 100% Vector Code-Driven Puppets</p>
+  </header>
+
+  <div class="studio-container">
+    <!-- Stage -->
+    <div class="stage-card">
+      <div class="char-tabs">
+        <button id="tab_alex" class="char-tab tab-alex active" onclick="switchChar('alex')">👨‍💻 Alex (Aarav)</button>
+        <button id="tab_maya" class="char-tab tab-maya" onclick="switchChar('maya')">👩‍🎨 Maya (Ananya)</button>
+        <button id="tab_kabir" class="char-tab tab-kabir" onclick="switchChar('kabir')">🧔 Kabir (Kabir)</button>
+        <button id="tab_riya" class="char-tab tab-riya" onclick="switchChar('riya')">👧 Riya (Riya)</button>
+        <button id="tab_dev" class="char-tab tab-dev" onclick="switchChar('dev')">⚡ Dev (Dev)</button>
+      </div>
+
+      <div class="character-view" id="stage">
+        <!-- SVG Injected here -->
+      </div>
+
+      <div class="play-banner" id="playBanner">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <strong id="trackTitle" style="color: #38BDF8; font-size: 15px;">Alex · Voice: Aarav (Hinglish/Hindi)</strong>
+            <div style="font-size: 12px; color: #94A3B8;">Real-Time Viseme Waveform Lip-Sync</div>
+          </div>
+          <button id="playAudioBtn" onclick="toggleAudioSpeech()" style="background: #38BDF8; color: #000; font-weight: 800; font-size: 14px; padding: 10px 20px; border-radius: 12px; border: none; cursor: pointer;">
+            ▶ PLAY SPEECH & SYNC
+          </button>
+        </div>
+        <div class="audio-subtitle" id="subtitleBox">"Namaste dosto! Main hu Alex, aapka vibe coding aur tech creator partner."</div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-panel">
+      <!-- Visemes -->
+      <div class="panel-section">
+        <h3>👄 Lip-Sync Visemes</h3>
+        <div class="btn-group">
+          <button class="control-btn active" onclick="setMouthManual('rest')">Rest</button>
+          <button class="control-btn" onclick="setMouthManual('open_small')">Open Small</button>
+          <button class="control-btn" onclick="setMouthManual('open_wide')">Open Wide (AA)</button>
+          <button class="control-btn" onclick="setMouthManual('o_shape')">O Shape (OO)</button>
+          <button class="control-btn" onclick="setMouthManual('e_shape')">E Shape (EE)</button>
+          <button class="control-btn" onclick="setMouthManual('smile')">Smile</button>
+        </div>
+      </div>
+
+      <!-- Eyes -->
+      <div class="panel-section">
+        <h3>👁️ Eye States</h3>
+        <div class="btn-group">
+          <button class="control-btn active" onclick="setEyesManual('open')">Open</button>
+          <button class="control-btn" onclick="setEyesManual('blink')">Blink</button>
+          <button class="control-btn" onclick="setEyesManual('wink')">Wink</button>
+          <button class="control-btn" onclick="setEyesManual('surprised')">Surprised</button>
+        </div>
+      </div>
+
+      <!-- Simulation -->
+      <div class="panel-section">
+        <h3>⚡ Continuous Talking Simulation</h3>
+        <button id="simBtn" style="width: 100%; padding: 13px; background: #10B981; color: #000; font-weight: 800; border-radius: 12px; border: none; cursor: pointer;" onclick="toggleSpeechSim()">
+          START TALKING SIMULATION
+        </button>
+      </div>
+
+      <!-- Roster Matrix -->
+      <div class="panel-section">
+        <h3>📋 Fixed Character ➔ Voice Matrix</h3>
+        <div id="rosterList">
+          <div class="roster-card active" onclick="switchChar('alex')">
+            <div><strong style="color: #38BDF8;">1. Alex</strong><br><small style="color:#94A3B8">Vibe Coder</small></div>
+            <span style="color:#38BDF8; font-weight: 700;">Voice: Aarav</span>
+          </div>
+          <div class="roster-card" onclick="switchChar('maya')">
+            <div><strong style="color: #EC4899;">2. Maya</strong><br><small style="color:#94A3B8">AI Director</small></div>
+            <span style="color:#EC4899; font-weight: 700;">Voice: Ananya</span>
+          </div>
+          <div class="roster-card" onclick="switchChar('kabir')">
+            <div><strong style="color: #F59E0B;">3. Kabir</strong><br><small style="color:#94A3B8">Deep Explainer</small></div>
+            <span style="color:#F59E0B; font-weight: 700;">Voice: Kabir</span>
+          </div>
+          <div class="roster-card" onclick="switchChar('riya')">
+            <div><strong style="color: #10B981;">4. Riya</strong><br><small style="color:#94A3B8">Lifestyle Vlogger</small></div>
+            <span style="color:#10B981; font-weight: 700;">Voice: Riya</span>
+          </div>
+          <div class="roster-card" onclick="switchChar('dev')">
+            <div><strong style="color: #34D399;">5. Dev</strong><br><small style="color:#94A3B8">30s Speed Coder</small></div>
+            <span style="color:#34D399; font-weight: 700;">Voice: Dev</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="audioPlayer"></audio>
+
+  <script>
+    const CHAR_DATA = {
+      alex: {
+        name: 'Alex',
+        voice: 'Aarav (Hinglish/Hindi)',
+        color: '#38BDF8',
+        audio: 'alex/alex_sample_5s.mp3',
+        visemesFile: 'alex/alex_sample_5s_visemes.json',
+        sub: 'Namaste dosto! Main hu Alex, aapka vibe coding aur tech creator partner.'
+      },
+      maya: {
+        name: 'Maya',
+        voice: 'Ananya (Hinglish/Hindi)',
+        color: '#EC4899',
+        audio: 'maya/maya_sample_5s.mp3',
+        visemesFile: 'maya/maya_sample_5s_visemes.json',
+        sub: 'Hey creators! Main hu Maya, aur main direct karungi aapke AI videos.'
+      },
+      kabir: {
+        name: 'Kabir',
+        voice: 'Kabir (Hindi/English)',
+        color: '#F59E0B',
+        audio: 'kabir/kabir_sample_5s.mp3',
+        visemesFile: 'kabir/kabir_sample_5s_visemes.json',
+        sub: 'Greetings. Main Kabir hu, deep explainers aur complex topics ko simple banane ke liye.'
+      },
+      riya: {
+        name: 'Riya',
+        voice: 'Riya (Hindi/English)',
+        color: '#10B981',
+        audio: 'riya/riya_sample_5s.mp3',
+        visemesFile: 'riya/riya_sample_5s_visemes.json',
+        sub: 'Hello friends! Main hu Riya, lifestyle aur creative video ideas share karne.'
+      },
+      dev: {
+        name: 'Dev',
+        voice: 'Dev (Hinglish/English)',
+        color: '#34D399',
+        audio: 'dev/dev_sample_5s.mp3',
+        visemesFile: 'dev/dev_sample_5s_visemes.json',
+        sub: 'Yo coders! Main Dev hu, 30-second speed code aur rapid tech hacks ke liye.'
+      }
+    };
+
+    let currentChar = 'alex';
+    let currentMouth = 'rest';
+    let currentEyes = 'open';
+    let headY = 0;
+    let headRot = 0;
+
+    let simInterval = null;
+    let audioSyncInterval = null;
+    let visemesCache = {};
+
+    // Preload visemes
+    Object.keys(CHAR_DATA).forEach(k => {
+      fetch(CHAR_DATA[k].visemesFile)
+        .then(r => r.json())
+        .then(data => { visemesCache[k] = data; })
+        .catch(e => console.log('Viseme preload:', k));
+    });
+
+    function switchChar(c) {
+      if (audioSyncInterval) stopAudioSpeech();
+      if (simInterval) toggleSpeechSim();
+
+      currentChar = c;
+      const data = CHAR_DATA[c];
+
+      document.querySelectorAll('.char-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(`tab_${c}`).classList.add('active');
+
+      document.querySelectorAll('.roster-card').forEach((rc, i) => {
+        rc.classList.toggle('active', Object.keys(CHAR_DATA)[i] === c);
+      });
+
+      document.getElementById('trackTitle').textContent = `${data.name} · Voice: ${data.voice}`;
+      document.getElementById('trackTitle').style.color = data.color;
+      document.getElementById('playAudioBtn').style.background = data.color;
+      document.getElementById('subtitleBox').textContent = `"${data.sub}"`;
+
+      document.getElementById('stage').style.background = `radial-gradient(circle, ${data.color}22 0%, rgba(15, 23, 42, 0) 70%)`;
+
+      renderStage();
+    }
+
+    function setMouthManual(m) {
+      if (audioSyncInterval) stopAudioSpeech();
+      if (simInterval) toggleSpeechSim();
+      currentMouth = m;
+      renderStage();
+    }
+
+    function setEyesManual(e) {
+      currentEyes = e;
+      renderStage();
+    }
+
+    function toggleAudioSpeech() {
+      const audio = document.getElementById('audioPlayer');
+      const btn = document.getElementById('playAudioBtn');
+      const data = CHAR_DATA[currentChar];
+
+      if (audioSyncInterval) {
+        stopAudioSpeech();
+      } else {
+        if (simInterval) toggleSpeechSim();
+
+        audio.src = data.audio;
+        audio.currentTime = 0;
+        audio.play().catch(e => console.log('Audio play error:', e));
+
+        btn.textContent = '⏹ STOP';
+        btn.style.background = '#EF4444';
+        btn.style.color = '#FFFFFF';
+
+        const vData = visemesCache[currentChar];
+
+        audioSyncInterval = setInterval(() => {
+          if (audio.paused || audio.ended) {
+            stopAudioSpeech();
+            return;
+          }
+
+          const currentSec = audio.currentTime;
+          const currentFrame = Math.floor(currentSec * 30);
+
+          if (vData && vData.frames && vData.frames[currentFrame]) {
+            const fInfo = vData.frames[currentFrame];
+            currentMouth = fInfo.mouth;
+            currentEyes = fInfo.eyes;
+            headY = fInfo.headY || 0;
+            headRot = fInfo.headRot || 0;
+          } else {
+            const shapes = ['open_small', 'open_wide', 'e_shape', 'o_shape'];
+            currentMouth = shapes[Math.floor(Math.random() * shapes.length)];
+            currentEyes = (currentFrame % 25 === 0) ? 'blink' : 'open';
+            headY = Math.sin(currentFrame * 0.35) * 3;
+            headRot = Math.sin(currentFrame * 0.18) * 1.5;
+          }
+          renderStage();
+        }, 33);
+      }
+    }
+
+    function stopAudioSpeech() {
+      const audio = document.getElementById('audioPlayer');
+      audio.pause();
+      if (audioSyncInterval) {
+        clearInterval(audioSyncInterval);
+        audioSyncInterval = null;
+      }
+      const data = CHAR_DATA[currentChar];
+      const btn = document.getElementById('playAudioBtn');
+      btn.textContent = '▶ PLAY SPEECH & SYNC';
+      btn.style.background = data.color;
+      btn.style.color = '#000000';
+      currentMouth = 'rest';
+      currentEyes = 'open';
+      headY = 0;
+      headRot = 0;
+      renderStage();
+    }
+
+    function toggleSpeechSim() {
+      const btn = document.getElementById('simBtn');
+      if (simInterval) {
+        clearInterval(simInterval);
+        simInterval = null;
+        currentMouth = 'rest';
+        currentEyes = 'open';
+        headY = 0;
+        headRot = 0;
+        btn.textContent = 'START TALKING SIMULATION';
+        btn.style.background = '#10B981';
+        renderStage();
+      } else {
+        if (audioSyncInterval) stopAudioSpeech();
+        btn.textContent = '⏹ STOP TALKING SIMULATION';
+        btn.style.background = '#EF4444';
+        const visemes = ['rest', 'open_small', 'open_wide', 'o_shape', 'e_shape', 'open_small'];
+        let count = 0;
+        simInterval = setInterval(() => {
+          count++;
+          currentMouth = visemes[Math.floor(Math.random() * visemes.length)];
+          currentEyes = (count % 18 === 0 || count % 19 === 0) ? 'blink' : 'open';
+          headY = Math.sin(count * 0.35) * 4;
+          headRot = Math.sin(count * 0.18) * 2;
+          renderStage();
+        }, 110);
+      }
+    }
+
+    function renderStage() {
+      const stage = document.getElementById('stage');
+      switch (currentChar) {
+        case 'maya': stage.innerHTML = getMayaSVG(currentMouth, currentEyes, headY, headRot); break;
+        case 'kabir': stage.innerHTML = getKabirSVG(currentMouth, currentEyes, headY, headRot); break;
+        case 'riya': stage.innerHTML = getRiyaSVG(currentMouth, currentEyes, headY, headRot); break;
+        case 'dev': stage.innerHTML = getDevSVG(currentMouth, currentEyes, headY, headRot); break;
+        case 'alex':
+        default: stage.innerHTML = getAlexSVG(currentMouth, currentEyes, headY, headRot); break;
+      }
+    }
+
+    // --- SVG Renderers ---
+    function getAlexSVG(mouth, eyes, hY, hRot) {
+      let m = getMouthPath(mouth, '#1E293B', '#881337');
+      let e = getEyesPath(eyes, '#1E293B', '#0F172A');
+      return `
+        <svg width="400" height="520" viewBox="0 0 600 800" fill="none">
+          <g transform="translate(0, ${hY * 0.3})">
+            <path d="M150 620 C 150 500, 220 480, 300 480 C 380 480, 450 500, 450 620 L 480 800 L 120 800 Z" fill="#1E293B" />
+            <path d="M240 480 C 270 540, 330 540, 360 480 C 340 560, 260 560, 240 480 Z" fill="#0F172A" />
+            <line x1="270" y1="520" x2="265" y2="600" stroke="#00F0FF" stroke-width="4" stroke-linecap="round" />
+            <line x1="330" y1="520" x2="335" y2="595" stroke="#00F0FF" stroke-width="4" stroke-linecap="round" />
+          </g>
+          <g transform="translate(300, 340) rotate(${hRot}) translate(-300, -340) translate(0, ${hY})">
+            <path d="M265 370 L 265 490 L 335 490 L 335 370 Z" fill="#E8B39E" />
+            <circle cx="180" cy="310" r="28" fill="#F5C4B0" /><circle cx="420" cy="310" r="28" fill="#F5C4B0" />
+            <path d="M 190 240 C 190 140, 410 140, 410 240 C 410 370, 360 420, 300 420 C 240 420, 190 370, 190 240 Z" fill="#FDDFD0" />
+            <path d="M 170 230 C 170 100, 430 100, 430 230 C 440 290, 430 330, 420 340 C 420 220, 400 130, 300 130 C 200 130, 180 220, 180 340 C 170 330, 160 290, 170 230 Z" fill="#1E293B" />
+            <path d="M 180 200 C 200 120, 260 100, 340 105 C 420 110, 430 160, 420 210 C 390 160, 350 170, 320 190 C 290 210, 240 175, 180 200 Z" fill="#334155" />
+            <path d="M 215 234 Q 245 224 275 232" stroke="#1E293B" stroke-width="6" stroke-linecap="round" fill="none" />
+            <path d="M 325 232 Q 355 224 385 234" stroke="#1E293B" stroke-width="6" stroke-linecap="round" fill="none" />
+            <rect x="205" y="245" width="80" height="55" rx="14" fill="rgba(15,23,42,0.15)" stroke="#0F172A" stroke-width="6" />
+            <rect x="315" y="245" width="80" height="55" rx="14" fill="rgba(15,23,42,0.15)" stroke="#0F172A" stroke-width="6" />
+            <line x1="285" y1="268" x2="315" y2="268" stroke="#0F172A" stroke-width="6" stroke-linecap="round" />
+            ${e}
+            <path d="M 300 285 C 295 305, 290 315, 305 318" stroke="#E2A690" stroke-width="4" stroke-linecap="round" fill="none" />
+            ${m}
+          </g>
+        </svg>
+      `;
+    }
+
+    function getMayaSVG(mouth, eyes, hY, hRot) {
+      let m = getMouthPath(mouth, '#3B0764', '#881337');
+      let e = getEyesPath(eyes, '#2E1065', '#2E1065', true);
+      return `
+        <svg width="400" height="520" viewBox="0 0 600 800" fill="none">
+          <g transform="translate(0, ${hY * 0.3})">
+            <path d="M 160 620 C 160 500, 220 470, 300 470 C 380 470, 440 500, 440 620 L 470 800 L 130 800 Z" fill="#2E1065" />
+            <path d="M 230 470 L 300 560 L 370 470 L 340 470 L 300 525 L 260 470 Z" fill="#EC4899" />
+            <line x1="300" y1="560" x2="300" y2="780" stroke="#EC4899" stroke-width="4" stroke-linecap="round" />
+          </g>
+          <g transform="translate(300, 335) rotate(${hRot}) translate(-300, -335) translate(0, ${hY})">
+            <path d="M 268 360 L 268 480 L 332 480 L 332 360 Z" fill="#E8B29C" />
+            <circle cx="180" cy="315" r="10" fill="#F43F5E" /><circle cx="420" cy="315" r="10" fill="#F43F5E" />
+            <path d="M 195 240 C 195 140, 405 140, 405 240 C 405 365, 355 415, 300 415 C 245 415, 195 365, 195 240 Z" fill="#FFE3D4" />
+            <path d="M 160 220 C 160 90, 440 90, 440 220 C 450 320, 430 380, 400 400 C 410 280, 390 120, 300 120 C 210 120, 190 280, 200 400 C 170 380, 150 320, 160 220 Z" fill="#1E1035" />
+            <path d="M 170 210 C 190 110, 260 90, 340 95 C 420 100, 435 150, 425 240 C 405 170, 350 165, 300 185 C 250 205, 210 190, 170 210 Z" fill="#581C87" />
+            <path d="M 230 115 C 270 105, 330 110, 370 140" stroke="#D946EF" stroke-width="6" stroke-linecap="round" />
+            <path d="M 220 231 Q 248 220 275 228" stroke="#3B0764" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <path d="M 325 228 Q 352 220 380 231" stroke="#3B0764" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            ${e}
+            <path d="M 300 285 C 297 302, 294 310, 304 314" stroke="#E2A690" stroke-width="3.5" stroke-linecap="round" fill="none" />
+            ${m}
+          </g>
+        </svg>
+      `;
+    }
+
+    function getKabirSVG(mouth, eyes, hY, hRot) {
+      let m = getMouthPath(mouth, '#15171A', '#7F1D1D');
+      let e = getEyesPath(eyes, '#15171A', '#15171A');
+      return `
+        <svg width="400" height="520" viewBox="0 0 600 800" fill="none">
+          <g transform="translate(0, ${hY * 0.3})">
+            <path d="M 140 620 C 140 490, 210 470, 300 470 C 390 470, 460 490, 460 620 L 490 800 L 110 800 Z" fill="#181A1D" />
+            <rect x="250" y="440" width="100" height="70" rx="14" fill="#121316" stroke="#333740" stroke-width="2" />
+            <circle cx="230" cy="560" r="7" fill="#F59E0B" />
+          </g>
+          <g transform="translate(300, 340) rotate(${hRot}) translate(-300, -340) translate(0, ${hY})">
+            <path d="M 265 360 L 265 460 L 335 460 L 335 360 Z" fill="#B87652" />
+            <circle cx="180" cy="310" r="28" fill="#C88460" /><circle cx="420" cy="310" r="28" fill="#C88460" />
+            <path d="M 190 230 C 190 130, 410 130, 410 230 C 410 365, 365 425, 300 425 C 235 425, 190 365, 190 230 Z" fill="#E2A684" />
+            <path d="M 195 300 C 195 380, 240 425, 300 425 C 360 425, 405 380, 405 300 C 405 340, 385 410, 300 410 C 215 410, 195 340, 195 300 Z" fill="#1C1E22" opacity="0.9" />
+            <path d="M 265 340 Q 300 334 335 340 Q 300 354 265 340 Z" fill="#1C1E22" opacity="0.85" />
+            <path d="M 180 180 C 200 100, 280 85, 360 95 C 420 105, 425 150, 415 190 C 385 140, 330 130, 280 145 C 230 160, 200 165, 180 180 Z" fill="#373B44" />
+            <path d="M 210 230 Q 245 216 280 226" stroke="#15171A" stroke-width="7" stroke-linecap="round" fill="none" />
+            <path d="M 320 226 Q 355 216 390 230" stroke="#15171A" stroke-width="7" stroke-linecap="round" fill="none" />
+            ${e}
+            <path d="M 300 270 L 294 308 L 306 312" stroke="#A86340" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            ${m}
+          </g>
+        </svg>
+      `;
+    }
+
+    function getRiyaSVG(mouth, eyes, hY, hRot) {
+      let m = getMouthPath(mouth, '#451A03', '#9F1239');
+      let e = getEyesPath(eyes, '#451A03', '#451A03');
+      return `
+        <svg width="400" height="520" viewBox="0 0 600 800" fill="none">
+          <g transform="translate(0, ${hY * 0.3})">
+            <path d="M 160 620 C 160 500, 220 480, 300 480 C 380 480, 440 500, 440 620 L 470 800 L 130 800 Z" fill="#F59E0B" />
+            <path d="M 235 480 C 255 520, 290 520, 300 495 C 290 480, 255 470, 235 480 Z" fill="#FFF" />
+            <path d="M 365 480 C 345 520, 310 520, 300 495 C 310 480, 345 470, 365 480 Z" fill="#FFF" />
+          </g>
+          <g transform="translate(300, 335) rotate(${hRot}) translate(-300, -335) translate(0, ${hY})">
+            <path d="M 150 220 C 150 80, 450 80, 450 220 C 460 340, 430 420, 390 440 C 410 320, 390 130, 300 130 C 210 130, 190 320, 210 440 C 170 420, 140 340, 150 220 Z" fill="#451A03" />
+            <circle cx="185" cy="310" r="24" fill="#FBD5C2" /><circle cx="415" cy="310" r="24" fill="#FBD5C2" />
+            <path d="M 195 240 C 195 140, 405 140, 405 240 C 405 365, 355 415, 300 415 C 245 415, 195 365, 195 240 Z" fill="#FFF1E8" />
+            <ellipse cx="225" cy="310" rx="18" ry="10" fill="#FDA4AF" opacity="0.45" />
+            <ellipse cx="375" cy="310" rx="18" ry="10" fill="#FDA4AF" opacity="0.45" />
+            <path d="M 175 210 C 190 110, 260 95, 340 100 C 420 105, 430 160, 420 220 C 390 160, 350 160, 310 180 C 270 200, 220 180, 175 210 Z" fill="#78350F" />
+            <rect x="360" y="145" width="28" height="10" rx="5" fill="#10B981" transform="rotate(15, 360, 145)" />
+            <path d="M 220 230 Q 248 220 275 228" stroke="#451A03" stroke-width="4" stroke-linecap="round" fill="none" />
+            <path d="M 325 228 Q 352 220 380 230" stroke="#451A03" stroke-width="4" stroke-linecap="round" fill="none" />
+            ${e}
+            <path d="M 296 295 Q 300 302 304 295" stroke="#E2A690" stroke-width="3.5" stroke-linecap="round" fill="none" />
+            ${m}
+          </g>
+        </svg>
+      `;
+    }
+
+    function getDevSVG(mouth, eyes, hY, hRot) {
+      let m = getMouthPath(mouth, '#18181B', '#881337');
+      let e = getEyesPath(eyes, '#18181B', '#09090B');
+      return `
+        <svg width="400" height="520" viewBox="0 0 600 800" fill="none">
+          <g transform="translate(0, ${hY * 0.3})">
+            <path d="M 150 620 C 150 490, 220 470, 300 470 C 380 470, 450 490, 450 620 L 480 800 L 120 800 Z" fill="#18181B" />
+            <line x1="300" y1="470" x2="300" y2="800" stroke="#10B981" stroke-width="4" />
+            <path d="M 210 470 C 210 540, 390 540, 390 470" stroke="#10B981" stroke-width="6" stroke-linecap="round" fill="none" />
+            <ellipse cx="205" cy="460" rx="20" ry="26" fill="#18181B" stroke="#10B981" stroke-width="3" />
+            <ellipse cx="395" cy="460" rx="20" ry="26" fill="#18181B" stroke="#10B981" stroke-width="3" />
+          </g>
+          <g transform="translate(300, 335) rotate(${hRot}) translate(-300, -335) translate(0, ${hY})">
+            <circle cx="180" cy="305" r="26" fill="#F6C3AE" /><circle cx="420" cy="305" r="26" fill="#F6C3AE" />
+            <path d="M 195 240 C 195 140, 405 140, 405 240 C 405 365, 360 418, 300 418 C 240 418, 195 365, 195 240 Z" fill="#FEE4D7" />
+            <path d="M 180 200 C 200 130, 240 100, 300 100 C 360 100, 410 130, 420 200 C 390 160, 360 160, 330 180 C 310 160, 280 150, 250 170 C 220 160, 200 180, 180 200 Z" fill="#27272A" />
+            <path d="M 265 60 L 290 85" stroke="#10B981" stroke-width="5" stroke-linecap="round" />
+            <path d="M 335 55 L 350 85" stroke="#10B981" stroke-width="5" stroke-linecap="round" />
+            <path d="M 215 232 Q 245 218 275 227" stroke="#18181B" stroke-width="6" stroke-linecap="round" fill="none" />
+            <path d="M 325 227 Q 355 218 385 232" stroke="#18181B" stroke-width="6" stroke-linecap="round" fill="none" />
+            ${e}
+            <path d="M 300 275 L 295 306 L 306 310" stroke="#DF9F88" stroke-width="4" stroke-linecap="round" fill="none" />
+            ${m}
+          </g>
+        </svg>
+      `;
+    }
+
+    function getMouthPath(mouth, strokeColor, fillColor) {
+      if (mouth === 'open_wide') {
+        return `<path d="M 272 350 Q 300 346 328 350 Q 332 390 300 392 Q 268 390 272 350 Z" fill="${fillColor}" stroke="${strokeColor}" stroke-width="4"/><rect x="284" y="348" width="32" height="6" fill="#FFF"/><ellipse cx="300" cy="382" rx="14" ry="7" fill="#F43F5E"/>`;
+      } else if (mouth === 'open_small') {
+        return `<ellipse cx="300" cy="362" rx="20" ry="11" fill="${fillColor}" stroke="${strokeColor}" stroke-width="4"/><rect x="288" y="356" width="24" height="6" fill="#FFF"/>`;
+      } else if (mouth === 'o_shape') {
+        return `<circle cx="300" cy="364" r="14" fill="${fillColor}" stroke="${strokeColor}" stroke-width="4"/><ellipse cx="300" cy="370" rx="8" ry="4" fill="#F43F5E"/>`;
+      } else if (mouth === 'e_shape') {
+        return `<rect x="274" y="357" width="52" height="14" rx="7" fill="${fillColor}" stroke="${strokeColor}" stroke-width="4"/><rect x="280" y="359" width="40" height="6" fill="#FFF"/>`;
+      } else if (mouth === 'smile') {
+        return `<path d="M 276 358 Q 300 376 324 358" stroke="${strokeColor}" stroke-width="5" stroke-linecap="round" fill="none"/>`;
+      } else {
+        return `<path d="M 282 360 Q 300 362 318 360" stroke="${strokeColor}" stroke-width="5" stroke-linecap="round" fill="none"/>`;
+      }
+    }
+
+    function getEyesPath(eyes, strokeColor, irisColor, isWinged = false) {
+      if (eyes === 'blink') {
+        return `<path d="M 225 272 Q 250 284 275 272" stroke="${strokeColor}" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M 325 272 Q 350 284 375 272" stroke="${strokeColor}" stroke-width="5" stroke-linecap="round" fill="none"/>`;
+      } else if (eyes === 'wink') {
+        return `<path d="M 225 272 Q 250 284 275 272" stroke="${strokeColor}" stroke-width="5" stroke-linecap="round" fill="none"/><circle cx="352" cy="268" r="14" fill="${irisColor}"/><circle cx="349" cy="265" r="4.5" fill="#FFF"/>`;
+      } else if (eyes === 'surprised') {
+        return `<circle cx="248" cy="268" r="17" fill="${irisColor}"/><circle cx="245" cy="265" r="5" fill="#FFF"/><circle cx="352" cy="268" r="17" fill="${irisColor}"/><circle cx="349" cy="265" r="5" fill="#FFF"/>`;
+      } else {
+        let wing = isWinged ? `<path d="M 228 262 Q 250 252 272 262" stroke="${strokeColor}" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M 328 262 Q 350 252 372 262" stroke="${strokeColor}" stroke-width="4" stroke-linecap="round" fill="none"/>` : '';
+        return `${wing}<circle cx="248" cy="268" r="14" fill="${irisColor}"/><circle cx="245" cy="265" r="4.5" fill="#FFF"/><circle cx="352" cy="268" r="14" fill="${irisColor}"/><circle cx="349" cy="265" r="4.5" fill="#FFF"/>`;
+      }
+    }
+
+    // Initial load
+    renderStage();
+  </script>
+</body>
+</html>

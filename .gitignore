@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Remotion & Webpack Cache
+.remotion/
+**/.remotion/
+.cache/
+**/.cache/
+
+# Python Cache & Virtual Environments
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+*.egg-info/
+
+# Temporary Render & Scratch Files
+temp_*
+**/temp_*
+_temp_*
+**/_temp_*
+*.tmp
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini

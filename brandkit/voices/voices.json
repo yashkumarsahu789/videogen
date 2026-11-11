@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "default_voice": "aarav",
+  "voices": {
+    "aarav": {
+      "id": "aarav",
+      "name": "Aarav",
+      "gender": "male",
+      "language": "Hinglish / Hindi",
+      "provider": "edge-tts",
+      "model_voice": "hi-IN-MadhurNeural",
+      "rate": "+10%",
+      "pitch": "+0Hz",
+      "style": "Conversational, confident, relatable",
+      "recommended_for": ["tech stories", "breakdowns", "reels"]
+    },
+    "ananya": {
+      "id": "ananya",
+      "name": "Ananya",
+      "gender": "female",
+      "language": "Hinglish / Hindi",
+      "provider": "edge-tts",
+      "model_voice": "hi-IN-SwaraNeural",
+      "rate": "+12%",
+      "pitch": "+2Hz",
+      "style": "Energetic, bright, high-retention",
+      "recommended_for": ["hooks", "product features", "quick tutorials"]
+    },
+    "kabir": {
+      "id": "kabir",
+      "name": "Kabir",
+      "gender": "male",
+      "language": "Hindi / English",
+      "provider": "edge-tts",
+      "model_voice": "en-IN-PrabhatNeural",
+      "rate": "+5%",
+      "pitch": "-4Hz",
+      "style": "Deep, authoritative, cinematic, podcast",
+      "recommended_for": ["deep explainers", "documentaries", "case studies"]
+    },
+    "riya": {
+      "id": "riya",
+      "name": "Riya",
+      "gender": "female",
+      "language": "Hindi / English",
+      "provider": "edge-tts",
+      "model_voice": "en-IN-NeerjaNeural",
+      "rate": "+8%",
+      "pitch": "+1Hz",
+      "style": "Friendly, approachable, modern creator",
+      "recommended_for": ["lifestyle", "vlogs", "casual dev tips"]
+    },
+    "dev": {
+      "id": "dev",
+      "name": "Dev",
+      "gender": "male",
+      "language": "Hinglish / English",
+      "provider": "edge-tts",
+      "model_voice": "hi-IN-MadhurNeural",
+      "rate": "+22%",
+      "pitch": "+4Hz",
+      "style": "Fast-paced, punchy, adrenaline, rapid coding",
+      "recommended_for": ["30s speed coding", "algorithm breakdowns", "viral shorts"]
+    }
+  }
+}
+

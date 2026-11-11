@@ -1,0 +1,11 @@
+{
+  "name": "alex-talking-demo",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.542"
+  }
+}
+
