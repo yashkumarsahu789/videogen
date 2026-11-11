@@ -82,8 +82,8 @@ def render_single_project(project_dir: Path):
             print(f"🔄 Auto-generating visemes from {audio_file.name}...")
             subprocess.run([
                 sys.executable, str(viseme_gen),
-                "--audio", str(audio_file),
-                "--output", str(visemes_json)
+                "-i", str(audio_file),
+                "-o", str(visemes_json)
             ], check=True)
 
     # Determine Composition ID
@@ -93,6 +93,12 @@ def render_single_project(project_dir: Path):
     temp_video = output_dir / f"_temp_{project_name}.mp4"
     final_output = output_dir / f"{project_name}.mp4"
     export_output = exports_dir / f"{project_name}.mp4"
+
+    # Ensure dependencies if package.json exists in code_dir
+    npm_bin = "npm.cmd" if os.name == "nt" else "npm"
+    if (code_dir / "package.json").exists() and not (code_dir / "node_modules").exists():
+        print(f"📦 Ensuring dependencies in {code_dir.name}...")
+        subprocess.run([npm_bin, "install", "--prefer-offline", "--no-audit"], cwd=str(code_dir), check=True)
 
     # Run Remotion render
     npx_bin = get_npx()

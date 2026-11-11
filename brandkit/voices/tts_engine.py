@@ -90,7 +90,7 @@ def main():
     parser.add_argument("-t", "--text", help="Text to speak")
     parser.add_argument("-f", "--file", help="Path to text file to speak")
     parser.add_argument("-o", "--output", default="output.mp3", help="Destination audio path (.mp3 or .wav)")
-    parser.add_argument("--rate", help="Override rate (e.g. +10%, -5%)")
+    parser.add_argument("--rate", help="Override rate (e.g. +10%%, -5%%)")
     parser.add_argument("--pitch", help="Override pitch (e.g. +2Hz, -3Hz)")
     parser.add_argument("--list", action="store_true", help="List all available voices")
     
