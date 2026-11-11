@@ -80,3 +80,20 @@ Jab bhi user video banane ya script likhne bole:
 * **Lip-Sync Enforcement:**
   - Character hamesha `brandkit/characters/engine/audio_to_visemes.py` se generate hue frame-accurate visemes (`rest`, `open_small`, `open_wide`, `o_shape`, `e_shape`, `smile`), procedural eye-blinks aur head-bobs ke sath hi animate hoga.
 
+---
+
+## 5. 🛍️ Master Mission & Brand Core: shop.lifesolvenow.com
+> **Core Rule:** Is studio ka 100% primary focus sirf aur sirf **shop LifeSolveNow** (`https://shop.lifesolvenow.com/`) ke liye high-converting, viral ad videos aur reels banana hai.
+
+* **Brand Details & Value Proposition:**
+  - **Website:** `https://shop.lifesolvenow.com/`
+  - **Platform:** India's Local Multi-Store Marketplace connecting verified neighbourhood retailers (Kirana, Pharmacy, Food, Local Services) with nearby buyers.
+  - **Key Differentiator:** 
+    - **0% Sales Commission** (Blinkit/Swiggy 20-30% kaat-te hain, yahan 0%).
+    - **Free Starter Plan** (up to 40 products free).
+    - **Pro Plan:** Only **₹99/month** for unlimited products with Google Boost & direct WhatsApp orders!
+  - **Primary Ad Angles:**
+    1. **Dukandar / Retailer Acquisition (B2B):** Local dukan ko bina mehenge app ke digital banana, Google par laana, customers ko wapas dukan se jodna.
+    2. **Local Shopper Discovery (B2C):** Apne aas-paas ki dukan se direct WhatsApp order karna, fast delivery, trusted neighbourhood shopping.
+
+
