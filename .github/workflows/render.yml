@@ -12,17 +12,19 @@ on:
           - 'latest'
           - 'all'
           - 'samples'
+          - 'dukandar_ad_v1'
           - 'alex_talking_demo'
       custom_project:
-        description: 'Or enter exact project folder name in video_output/ (leave blank for above selection)'
+        description: 'Or enter exact project folder name in video_output/'
         required: false
         default: ''
         type: string
   push:
     paths:
-      - 'video_output/**/code/**'
-      - 'video_output/**/audio/**'
+      - 'video_output/**'
       - '.github/workflows/render.yml'
+      - 'scripts/**'
+      - 'brandkit/**'
     branches:
       - main
 
@@ -30,7 +32,7 @@ jobs:
   render:
     name: ⚡ Render Video in Cloud
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 25
 
     steps:
       - name: 📥 Checkout Repository
@@ -53,19 +55,30 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      - name: 📦 Install Root & Remotion Dependencies
+      - name: 📦 Install Root & Project Dependencies
         run: |
           npm install
+          if [ -d "video_output/dukandar_ad_v1/code" ]; then
+            cd video_output/dukandar_ad_v1/code && npm install && cd ../../..
+          fi
 
-      - name: 🎞️ Install FFmpeg & Headless Browser Libraries
+      - name: 🎞️ Install FFmpeg & System Display Libraries
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg libnss3 libatk-bridge2.0-0 libdrm2 libxkbcommon0 libgbm1 libasound2 fonts-noto-color-emoji fonts-dejavu fonts-freefont-ttf
+          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y libnss3 libatk-bridge2.0-0 libdrm2 libxkbcommon0 libgbm1 fonts-noto-color-emoji fonts-dejavu fonts-freefont-ttf || true
+          sudo apt-get install -y libasound2t64 || sudo apt-get install -y libasound2 || true
 
       - name: 🎬 Run Cloud Video Render
+        env:
+          INPUT_TARGET: ${{ github.event.inputs.target }}
+          CUSTOM_PROJ: ${{ github.event.inputs.custom_project }}
         run: |
-          TARGET="${{ inputs.custom_project != '' && inputs.custom_project || inputs.target || 'latest' }}"
-          echo "Render Target: $TARGET"
+          TARGET="${CUSTOM_PROJ:-$INPUT_TARGET}"
+          if [ -z "$TARGET" ]; then
+            TARGET="latest"
+          fi
+          echo "Executing Render for Target: $TARGET"
           python scripts/cloud_render.py --target "$TARGET"
 
       - name: 📤 Upload Rendered Videos as Artifacts
@@ -77,4 +90,3 @@ jobs:
             video_output/**/output/*.mp4
           if-no-files-found: warn
           retention-days: 14
-
