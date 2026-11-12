@@ -2,9 +2,9 @@
 """
 Generates the 1-Click Google Colab Notebook for VIBDECODING Studio.
 Updated with:
-- NO silent fallback: only renders and plays the exact selected project.
-- Clean display with no auto-download (manual download button).
-- Support for shop_repair_ad (Mobile & Electronics Repair Shop Ad with Kabir).
+- Target: shop_intro_video (Grand Introduction Video for shop.lifesolvenow.com).
+- Support for shop_repair_ad, shop_30s_ad, dukandar_ad_v1.
+- In-player manual download button (auto-download OFF).
 - Force fetch latest Git commits.
 """
 
@@ -42,7 +42,7 @@ notebook = {
                 "**Kaise Chalana Hai:**\n",
                 "1. **Step 1 (▶ Play):** GitHub se latest video project code pull karein.\n",
                 "2. **Step 2 (▶ Play):** One-time cloud setup (~20s).\n",
-                "3. **Step 3 (▶ Play):** `shop_repair_ad` render karein — exact video screen par play hogi (Auto-download band hai, download button provided).\n"
+                "3. **Step 3 (▶ Play):** `shop_intro_video` render karein — exact video screen par play hogi (Auto-download band hai, download button provided).\n"
             ]
         },
         {
@@ -99,6 +99,8 @@ notebook = {
                 "\n",
                 "print(\"📦 3/3 Installing Remotion rendering engine...\")\n",
                 "!npm install -q --no-audit\n",
+                "if os.path.exists(\"video_output/shop_intro_video/code\"):\n",
+                "    !cd video_output/shop_intro_video/code && npm install -q --no-audit\n",
                 "if os.path.exists(\"video_output/shop_repair_ad/code\"):\n",
                 "    !cd video_output/shop_repair_ad/code && npm install -q --no-audit\n",
                 "if os.path.exists(\"video_output/shop_30s_ad/code\"):\n",
@@ -116,7 +118,7 @@ notebook = {
                 "# @title 🎬 Step 3: Render Video in Cloud & Watch Preview\n",
                 "# @markdown Select which project you want to render:\n",
                 "\n",
-                "target_project = \"shop_repair_ad\" # @param [\"shop_repair_ad\", \"shop_30s_ad\", \"dukandar_ad_v1\"]\n",
+                "target_project = \"shop_intro_video\" # @param [\"shop_intro_video\", \"shop_repair_ad\", \"shop_30s_ad\", \"dukandar_ad_v1\"]\n",
                 "auto_download = False # @param {type:\"boolean\"}\n",
                 "show_preview = True # @param {type:\"boolean\"}\n",
                 "\n",
