@@ -108,7 +108,7 @@ notebook = {
                 "# @title 🎬 Step 3: Render Video in Cloud & Auto-Download\n",
                 "# @markdown Select which project you want to render:\n",
                 "\n",
-                "target_project = \"dukandar_ad_v1\" # @param [\"dukandar_ad_v1\", \"latest\", \"alex_talking_demo\", \"samples\"]\n",
+                "target_project = \"shop_30s_ad\" # @param [\"shop_30s_ad\", \"dukandar_ad_v1\", \"latest\", \"alex_talking_demo\", \"samples\"]\n",
                 "auto_download = True # @param {type:\"boolean\"}\n",
                 "show_preview = True # @param {type:\"boolean\"}\n",
                 "\n",
@@ -158,3 +158,4 @@ notebook = {
 
 Path("colab_render.ipynb").write_text(json.dumps(notebook, indent=2), encoding="utf-8")
 print("colab_render.ipynb generated successfully!")
+
