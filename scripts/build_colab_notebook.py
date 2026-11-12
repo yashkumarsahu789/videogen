@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+"""
+Generates the 1-Click Google Colab Notebook for VIBDECODING Studio.
+"""
+
+import json
+from pathlib import Path
+
+notebook = {
+    "nbformat": 4,
+    "nbformat_minor": 0,
+    "metadata": {
+        "colab": {
+            "name": "VIBDECODING Cloud Video Studio",
+            "provenance": [],
+            "authorship_tag": "VIBDECODING"
+        },
+        "kernelspec": {
+            "name": "python3",
+            "display_name": "Python 3"
+        },
+        "language_info": {
+            "name": "python"
+        },
+        "accelerator": "GPU"
+    },
+    "cells": [
+        {
+            "cell_type": "markdown",
+            "metadata": {"id": "header_md"},
+            "source": [
+                "# 🎬 VIBDECODING Studio — 1-Click Cloud Video Renderer\n",
+                "### **Google Colab Dedicated Cloud Engine (12 GB RAM · Zero Queue · Superfast)**\n",
+                "\n",
+                "> 💡 **Zero Laptop Load:** Saara heavy video rendering Google ke cloud servers par hoga. Aapka laptop bilkul silent aur cool rahega!\n",
+                "\n",
+                "**Kaise Chalana Hai:**\n",
+                "1. Pehle **Step 1** ka Play (▶) button dabayein taaki latest code connect ho jaye.\n",
+                "2. Fir **Step 2** ka Play (▶) button dabayein (One-time setup ~20s).\n",
+                "3. Fir **Step 3** me apna project select karein aur Play (▶) dabayein — **30 second me video render hokar aapke computer par auto-download ho jayegi!**\n"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {"id": "step1_clone"},
+            "outputs": [],
+            "source": [
+                "# @title 📥 Step 1: Connect & Pull Latest Studio Code\n",
+                "# @markdown Run this cell to clone or pull your latest video projects from GitHub.\n",
+                "import os\n",
+                "\n",
+                "GITHUB_USERNAME = \"yashkumarsahu789\"\n",
+                "REPO_NAME = \"videogen\"\n",
+                "\n",
+                "# If your GitHub repository is Private, enter a Personal Access Token below.\n",
+                "# If your repository is Public, leave it completely blank!\n",
+                "GITHUB_TOKEN = \"\" # @param {type:\"string\"}\n",
+                "\n",
+                "token_clean = GITHUB_TOKEN.strip()\n",
+                "if token_clean:\n",
+                "    clone_url = f\"https://{GITHUB_USERNAME}:{token_clean}@github.com/{GITHUB_USERNAME}/{REPO_NAME}.git\"\n",
+                "else:\n",
+                "    clone_url = f\"https://github.com/{GITHUB_USERNAME}/{REPO_NAME}.git\"\n",
+                "\n",
+                "if not os.path.exists(REPO_NAME):\n",
+                "    print(f\"🚀 Connecting to {REPO_NAME} from GitHub...\")\n",
+                "    !git clone $clone_url\n",
+                "    %cd $REPO_NAME\n",
+                "else:\n",
+                "    %cd /content/$REPO_NAME\n",
+                "    print(\"🔄 Pulling latest updates...\")\n",
+                "    !git pull\n",
+                "\n",
+                "print(\"\\n✅ Repository ready in Google Colab Cloud!\")\n"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {"id": "step2_deps"},
+            "outputs": [],
+            "source": [
+                "# @title ⚙️ Step 2: Install Cloud Dependencies (One-Time Setup ~20s)\n",
+                "# @markdown Installs Remotion, FFmpeg, and Voice/Lip-Sync packages in Google Cloud.\n",
+                "import os\n",
+                "\n",
+                "print(\"📦 1/3 Installing Linux display and media libraries...\")\n",
+                "!apt-get update -qq && apt-get install -y -qq ffmpeg libnss3 libatk-bridge2.0-0 libdrm2 libxkbcommon0 libgbm1 fonts-noto-color-emoji > /dev/null\n",
+                "\n",
+                "print(\"📦 2/3 Installing Python voice and lip-sync packages...\")\n",
+                "!pip install -q edge-tts numpy soundfile scipy requests\n",
+                "\n",
+                "print(\"📦 3/3 Installing Remotion and rendering engine...\")\n",
+                "!npm install -q --no-audit\n",
+                "if os.path.exists(\"video_output/dukandar_ad_v1/code\"):\n",
+                "    !cd video_output/dukandar_ad_v1/code && npm install -q --no-audit\n",
+                "\n",
+                "print(\"\\n🚀 Cloud environment fully optimized and ready to render at full speed!\")\n"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {"id": "step3_render"},
+            "outputs": [],
+            "source": [
+                "# @title 🎬 Step 3: Render Video in Cloud & Auto-Download\n",
+                "# @markdown Select which project you want to render:\n",
+                "\n",
+                "target_project = \"dukandar_ad_v1\" # @param [\"dukandar_ad_v1\", \"latest\", \"alex_talking_demo\", \"samples\"]\n",
+                "auto_download = True # @param {type:\"boolean\"}\n",
+                "show_preview = True # @param {type:\"boolean\"}\n",
+                "\n",
+                "import os\n",
+                "import glob\n",
+                "from IPython.display import HTML, display\n",
+                "from google.colab import files\n",
+                "\n",
+                "print(f\"🎬 Rendering target: '{target_project}' on Google Cloud VM...\")\n",
+                "!python scripts/cloud_render.py --target \"$target_project\"\n",
+                "\n",
+                "# Locate generated video\n",
+                "video_path = f\"exports/{target_project}.mp4\"\n",
+                "if not os.path.exists(video_path):\n",
+                "    candidates = sorted(glob.glob(\"exports/*.mp4\"), key=os.path.getmtime, reverse=True)\n",
+                "    if candidates:\n",
+                "        video_path = candidates[0]\n",
+                "\n",
+                "if os.path.exists(video_path):\n",
+                "    file_size_mb = os.path.getsize(video_path) / (1024 * 1024)\n",
+                "    print(f\"\\n🎉 VIDEO RENDERED SUCCESSFULLY IN CLOUD!\")\n",
+                "    print(f\"📹 Path: {video_path} ({file_size_mb:.2f} MB)\")\n",
+                "\n",
+                "    if show_preview:\n",
+                "        print(\"\\n🎥 Live Preview:\")\n",
+                "        from base64 import b64encode\n",
+                "        with open(video_path, \"rb\") as f:\n",
+                "            mp4_b64 = b64encode(f.read()).decode()\n",
+                "        html_code = f'''\n",
+                "        <div style=\"display:flex; justify-content:center;\">\n",
+                "          <video width=\"360\" height=\"640\" controls autoplay style=\"border-radius:18px; box-shadow:0 12px 36px rgba(0,0,0,0.6);\">\n",
+                "            <source src=\"data:video/mp4;base64,{mp4_b64}\" type=\"video/mp4\">\n",
+                "          </video>\n",
+                "        </div>\n",
+                "        '''\n",
+                "        display(HTML(html_code))\n",
+                "\n",
+                "    if auto_download:\n",
+                "        print(\"\\n📥 Downloading video directly to your computer...\")\n",
+                "        files.download(video_path)\n",
+                "else:\n",
+                "    print(\"❌ Render output not found! Please check output logs above.\")\n"
+            ]
+        }
+    ]
+}
+
+Path("colab_render.ipynb").write_text(json.dumps(notebook, indent=2), encoding="utf-8")
+print("colab_render.ipynb generated successfully!")
