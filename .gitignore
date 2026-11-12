@@ -24,6 +24,9 @@ temp_*
 _temp_*
 **/_temp_*
 *.tmp
+scratch/
+exports/
+**/output/*.mp4
 
 # Operating System Files
 .DS_Store
