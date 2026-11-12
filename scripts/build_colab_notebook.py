@@ -2,10 +2,9 @@
 """
 Generates the 1-Click Google Colab Notebook for VIBDECODING Studio.
 Updated with:
-- auto_download turned OFF by default (as requested by user).
-- In-player manual download button.
-- Default project set to 'shop_30s_ad'.
-- Force-fetch latest GitHub code on Step 1.
+- NO silent fallback: only renders and plays the exact selected project.
+- Clean display with no auto-download.
+- Force fetch latest Git commits.
 """
 
 import json
@@ -37,12 +36,12 @@ notebook = {
                 "# 🎬 VIBDECODING Studio — Cloud Video Renderer\n",
                 "### **Google Colab Cloud Engine (12 GB RAM · Zero Queue · Instant Play)**\n",
                 "\n",
-                "> 💡 **Zero Laptop Load:** Saara heavy video rendering Google ke cloud servers par hoga. Laptop ka fan ekdam silent rahega!\n",
+                "> 💡 **Zero Laptop Load:** Saara heavy video rendering Google ke cloud servers par hoga. Laptop ka fan bilkul silent rahega!\n",
                 "\n",
                 "**Kaise Chalana Hai:**\n",
-                "1. **Step 1 (▶ Play):** GitHub se latest 30-second video code pull karein.\n",
+                "1. **Step 1 (▶ Play):** GitHub se latest 30-second video project code pull karein.\n",
                 "2. **Step 2 (▶ Play):** One-time cloud setup (~20s).\n",
-                "3. **Step 3 (▶ Play):** `shop_30s_ad` render karein — video screen par play hogi (Auto-download band hai, aap man chahe toh niche download button se download kar sakte hain).\n"
+                "3. **Step 3 (▶ Play):** `shop_30s_ad` render karein — exact 32-second video screen par play hogi (Auto-download band hai).\n"
             ]
         },
         {
@@ -114,7 +113,7 @@ notebook = {
                 "# @title 🎬 Step 3: Render Video in Cloud & Watch Preview\n",
                 "# @markdown Select which project you want to render:\n",
                 "\n",
-                "target_project = \"shop_30s_ad\" # @param [\"shop_30s_ad\", \"dukandar_ad_v1\", \"latest\", \"alex_talking_demo\", \"samples\"]\n",
+                "target_project = \"shop_30s_ad\" # @param [\"shop_30s_ad\", \"dukandar_ad_v1\"]\n",
                 "auto_download = False # @param {type:\"boolean\"}\n",
                 "show_preview = True # @param {type:\"boolean\"}\n",
                 "\n",
@@ -126,12 +125,10 @@ notebook = {
                 "print(f\"🎬 Rendering target: '{target_project}' on Google Cloud VM...\")\n",
                 "!python scripts/cloud_render.py --target \"$target_project\"\n",
                 "\n",
-                "# Locate generated video\n",
+                "# Target video path strictly matching the requested project\n",
                 "video_path = f\"exports/{target_project}.mp4\"\n",
                 "if not os.path.exists(video_path):\n",
-                "    candidates = sorted(glob.glob(\"exports/*.mp4\"), key=os.path.getmtime, reverse=True)\n",
-                "    if candidates:\n",
-                "        video_path = candidates[0]\n",
+                "    video_path = f\"video_output/{target_project}/output/{target_project}.mp4\"\n",
                 "\n",
                 "if os.path.exists(video_path):\n",
                 "    file_size_mb = os.path.getsize(video_path) / (1024 * 1024)\n",
@@ -160,11 +157,11 @@ notebook = {
                 "        print(\"\\n📥 Auto-downloading video to your computer...\")\n",
                 "        files.download(video_path)\n",
                 "else:\n",
-                "    print(\"❌ Render output not found! Please check output logs above.\")\n"
+                "    print(f\"\\n❌ ERROR: Video file '{video_path}' was not generated! Please check the render output logs above.\")\n"
             ]
         }
     ]
 }
 
 Path("colab_render.ipynb").write_text(json.dumps(notebook, indent=2), encoding="utf-8")
-print("colab_render.ipynb generated successfully!")
+print("colab_render.ipynb regenerated successfully!")
