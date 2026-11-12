@@ -106,10 +106,28 @@ def render_single_project(project_dir: Path):
         npx_bin, "remotion", "render",
         "src/index.ts", comp_id,
         str(temp_video),
-        "--concurrency=4"
+        "--concurrency=2"
     ]
-    print(f"⚡ Rendering frames with Remotion...")
-    subprocess.run(render_cmd, cwd=str(code_dir), check=True)
+    if os.name != "nt":
+        render_cmd.extend(["--gl=angle", "--enable-multiprocess-on-linux"])
+
+    print(f"⚡ Rendering frames with Remotion (cmd: {' '.join(render_cmd)})...")
+    try:
+        subprocess.run(render_cmd, cwd=str(code_dir), check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"⚠️ Primary render attempt failed (exit code {e.returncode}). Retrying with software OpenGL (swiftshader)...")
+        if os.name != "nt":
+            fallback_cmd = [
+                npx_bin, "remotion", "render",
+                "src/index.ts", comp_id,
+                str(temp_video),
+                "--concurrency=1",
+                "--gl=swiftshader",
+                "--enable-multiprocess-on-linux"
+            ]
+            subprocess.run(fallback_cmd, cwd=str(code_dir), check=True)
+        else:
+            raise
 
     # Multiplex with Audio if audio exists
     if audio_file and audio_file.exists():
