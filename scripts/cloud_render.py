@@ -142,6 +142,26 @@ def get_latest_project() -> Path:
     video_output = ROOT_DIR / "video_output"
     if not video_output.exists():
         return None
+
+    # 1. Try finding latest project from git commit history
+    try:
+        git_res = subprocess.run(
+            ["git", "log", "-n", "1", "--pretty=format:", "--name-only", "video_output/"],
+            cwd=str(ROOT_DIR), capture_output=True, text=True
+        )
+        if git_res.returncode == 0 and git_res.stdout.strip():
+            for line in git_res.stdout.strip().splitlines():
+                line = line.strip().replace("\\", "/")
+                if line.startswith("video_output/"):
+                    parts = line.split("/")
+                    if len(parts) >= 2:
+                        candidate = video_output / parts[1]
+                        if candidate.is_dir() and (candidate / "code").exists():
+                            return candidate
+    except Exception:
+        pass
+
+    # 2. Fallback to filesystem modification time
     projects = [p for p in video_output.iterdir() if p.is_dir() and (p / "code").exists()]
     if not projects:
         return None

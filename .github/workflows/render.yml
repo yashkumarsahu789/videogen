@@ -42,7 +42,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
 
       - name: 📦 Install Python Dependencies
         run: |
@@ -53,14 +52,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: 📦 Install Root & Project Dependencies
         run: |
           npm install
-          if [ -d "video_output/dukandar_ad_v1/code" ]; then
-            cd video_output/dukandar_ad_v1/code && npm install && cd ../../..
-          fi
+          for d in video_output/*/code; do
+            if [ -f "$d/package.json" ]; then
+              echo "Installing in $d..."
+              (cd "$d" && npm install --prefer-offline --no-audit) || true
+            fi
+          done
 
       - name: 🎞️ Install FFmpeg & System Display Libraries
         run: |
