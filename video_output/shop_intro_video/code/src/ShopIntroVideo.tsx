@@ -21,59 +21,59 @@ export const ShopIntroVideo: React.FC = () => {
   const headY = currentFrameInfo.headY || 0;
   const headRot = currentFrameInfo.headRot || 0;
 
-  // Scene timing configuration across 1708 frames (~56.9 seconds)
+  // Scene timing configuration across 1808 frames (~60.26 seconds)
   let sceneIndex = 1;
-  let sceneBadge = '🇮🇳 LOCAL SHOPS • DIGITAL POWER';
+  let sceneBadge = '🇮🇳 LOCAL BHAROSA • DIGITAL POWER';
   let eyebrow: EyebrowState = 'neutral';
   let subtitleText = '';
   let highlightWord = '';
   let bgGradient = 'radial-gradient(circle at 50% 30%, #1e1b4b 0%, #030712 80%)';
   let accentColor = '#FBBF24';
 
-  if (frame < 320) {
-    // Scene 1: The Core Mission & Local Trust (0 - 10.6s)
+  if (frame < 340) {
+    // Scene 1: The Core Mission & Local Trust (0 - 11.3s)
     sceneIndex = 1;
     sceneBadge = '🇮🇳 LOCAL BHAROSA • DIGITAL POWER';
     eyebrow = 'neutral';
     accentColor = '#FBBF24';
     bgGradient = 'radial-gradient(circle at 50% 30%, #1e1b4b 0%, #030712 80%)';
-    subtitleText = 'Hamare mohalle ki dukan sirf dukan nahi... hum sab ka bharosa hoti hai! shop.lifesolvenow.com';
+    subtitleText = 'हमारे शहर और मोहल्ले की दुकान... सिर्फ एक दुकान नहीं, हम सब का भरोसा होती है!';
     highlightWord = 'shop.lifesolvenow.com';
-  } else if (frame < 640) {
-    // Scene 2: Kirana & Retail WhatsApp Storefront (10.6 - 21.3s)
+  } else if (frame < 680) {
+    // Scene 2: Kirana & Retail WhatsApp Storefront (11.3 - 22.6s)
     sceneIndex = 2;
     sceneBadge = '🛒 KIRANA & RETAIL STOREFRONT';
     eyebrow = 'curious';
     accentColor = '#10B981';
     bgGradient = 'radial-gradient(circle at 50% 30%, #064E3B 0%, #030712 75%)';
-    subtitleText = 'Kirana & Retail: Counter QR scan karo aur direct WhatsApp par ready cart order pao!';
+    subtitleText = 'किराना और रिटेल: काउंटर क्यूआर स्कैन करो और डायरेक्ट WhatsApp पर रेडी आर्डर पाओ!';
     highlightWord = '1-Click WhatsApp Order & QR';
-  } else if (frame < 980) {
-    // Scene 3: Repair & Electronics Digital Job Sheet (21.3 - 32.6s)
+  } else if (frame < 1040) {
+    // Scene 3: Repair & Electronics Digital Job Sheet (22.6 - 34.6s)
     sceneIndex = 3;
     sceneBadge = '📱 REPAIR & SERVICE JOB CARDS';
     eyebrow = 'neutral';
     accentColor = '#38BDF8';
     bgGradient = 'radial-gradient(circle at 50% 30%, #0f172a 0%, #030712 80%)';
-    subtitleText = 'Repair Shops: Purana register band! Digital job sheets aur WhatsApp warranty shuru!';
+    subtitleText = 'रिपेयर शॉप्स: पुराना रजिस्टर बंद! डिजिटल जॉब शीट्स और WhatsApp वारंटी शुरू!';
     highlightWord = 'Digital Job Sheet & Warranty';
-  } else if (frame < 1320) {
-    // Scene 4: Restaurant & Cafe Table QR & Kitchen (32.6 - 44s)
+  } else if (frame < 1400) {
+    // Scene 4: Restaurant & Cafe Table QR & Kitchen (34.6 - 46.6s)
     sceneIndex = 4;
     sceneBadge = '🍽️ TABLE QR & KITCHEN ORDERS';
     eyebrow = 'raised';
     accentColor = '#F97316';
     bgGradient = 'radial-gradient(circle at 50% 30%, #431407 0%, #030712 80%)';
-    subtitleText = 'Restaurants & Cafes: Har table par Smart QR se live kitchen orders, no costly POS!';
+    subtitleText = 'रेस्टोरेंट और कैफ़े: हर टेबल पर स्मार्ट QR से लाइव किचन ऑर्डर्स, नो कॉस्टली POS!';
     highlightWord = 'Smart Table QR & Kitchen Screen';
   } else {
-    // Scene 5: 0% Commission & Free Trial CTA (44 - 56.9s)
+    // Scene 5: 0% Commission & Free Trial CTA (46.6 - 60.26s)
     sceneIndex = 5;
     sceneBadge = '🚀 0% COMMISSION • CLAIM FREE TRIAL';
     eyebrow = 'neutral';
     accentColor = '#FBBF24';
     bgGradient = 'radial-gradient(circle at 50% 30%, #312E81 0%, #030712 80%)';
-    subtitleText = 'Zero Percent Sales Commission! Aapki kamai poori aapki. Claim karein Free Trial!';
+    subtitleText = 'ज़ीरो परसेंट सेल्स कमीशन! आपकी कमाई पूरी आपकी। क्लेम करें Free Trial!';
     highlightWord = 'shop.lifesolvenow.com';
   }
 
@@ -458,4 +458,3 @@ export const ShopIntroVideo: React.FC = () => {
     </div>
   );
 };
-

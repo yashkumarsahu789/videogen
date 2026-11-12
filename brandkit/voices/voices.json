@@ -30,13 +30,13 @@
       "id": "kabir",
       "name": "Kabir",
       "gender": "male",
-      "language": "Hindi / English",
+      "language": "Hindi / Hinglish",
       "provider": "edge-tts",
-      "model_voice": "en-IN-PrabhatNeural",
-      "rate": "+5%",
+      "model_voice": "hi-IN-MadhurNeural",
+      "rate": "+3%",
       "pitch": "-4Hz",
       "style": "Deep, authoritative, cinematic, podcast",
-      "recommended_for": ["deep explainers", "documentaries", "case studies"]
+      "recommended_for": ["deep explainers", "documentaries", "case studies", "brand intro"]
     },
     "riya": {
       "id": "riya",
