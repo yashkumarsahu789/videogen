@@ -191,8 +191,22 @@ def main():
     parser.add_argument("--target", default="latest", help="'latest', 'all', 'samples', or project name/path")
     args = parser.parse_args()
 
-    target = args.target.strip()
-    print(f"🎬 Initiating Cloud Render Pipeline | Target: '{target}'")
+    requested_target = args.target.strip()
+    target = requested_target
+    print(f"🎬 Initiating Cloud Render Pipeline | Target: '{requested_target}'")
+
+    # Project aliases & legacy name mappings
+    ALIASES = {
+        "shop_30s_ad": "bastar_yash_ad",
+        "dukandar_ad_v1": "bastar_yash_ad",
+        "yash_ad": "bastar_yash_ad",
+        "bastar_ad": "bastar_yash_ad",
+        "shop_ad": "bastar_yash_ad",
+    }
+    if target in ALIASES:
+        mapped = ALIASES[target]
+        print(f"🔄 Remapping target '{target}' -> '{mapped}' (Latest updated project with Day Theme & Photo Presentation)")
+        target = mapped
 
     if target == "samples":
         success = render_samples()
@@ -225,12 +239,28 @@ def main():
     if not candidate.exists():
         candidate = Path(target)
     
-    if candidate.exists() and candidate.is_dir():
-        success = render_single_project(candidate)
-        sys.exit(0 if success else 1)
-    else:
-        print(f"❌ Project '{target}' could not be found!")
-        sys.exit(1)
+    if not (candidate.exists() and candidate.is_dir()):
+        latest = get_latest_project()
+        if latest:
+            print(f"⚠️ Project '{target}' could not be found! Automatically redirecting to active project: '{latest.name}'")
+            candidate = latest
+            target = latest.name
+        else:
+            print(f"❌ Project '{target}' could not be found!")
+            sys.exit(1)
+
+    success = render_single_project(candidate)
+
+    # If an alias was used, provide compatibility copies in exports
+    if success and requested_target != candidate.name:
+        exports_dir = ROOT_DIR / "exports"
+        master_export = exports_dir / f"{candidate.name}.mp4"
+        compat_export = exports_dir / f"{requested_target}.mp4"
+        if master_export.exists():
+            shutil.copy2(str(master_export), str(compat_export))
+            print(f"   📋 Compatibility Copy Generated: {compat_export}")
+
+    sys.exit(0 if success else 1)
 
 if __name__ == "__main__":
     main()
