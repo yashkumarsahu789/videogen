@@ -21,7 +21,7 @@ export const BastarYashAd: React.FC = () => {
   const headY = currentFrameInfo.headY || 0;
   const headRot = currentFrameInfo.headRot || 0;
 
-  // Scene timing configuration across 1802 frames (~60.06 seconds)
+  // Scene timing configuration across 2296 frames (~76.5 seconds)
   let sceneIndex = 1;
   let sceneBadge = '🌟 NAMASTE BASTAR • DUKANDAAR SPECIAL';
   let eyebrow: EyebrowState = 'neutral';
@@ -30,8 +30,8 @@ export const BastarYashAd: React.FC = () => {
   let bgGradient = 'radial-gradient(circle at 50% 30%, #1e1b4b 0%, #030712 80%)';
   let accentColor = '#FBBF24';
 
-  if (frame < 240) {
-    // Scene 1: Personal Intro & Bastar Hook (0 - 8s)
+  if (frame < 320) {
+    // Scene 1: Personal Intro & Bastar Hook (0 - 10.6s)
     sceneIndex = 1;
     sceneBadge = '🌟 NAMASTE BASTAR • YASH';
     eyebrow = 'neutral';
@@ -39,8 +39,8 @@ export const BastarYashAd: React.FC = () => {
     bgGradient = 'radial-gradient(circle at 50% 30%, #1e1b4b 0%, #030712 80%)';
     subtitleText = 'नमस्ते बस्तर! मेरा नाम यश है... और मैं लेकर आ गया हूँ बस्तर के दुकानदारों के लिए एक ज़बरदस्त वेबसाइट!';
     highlightWord = 'नमस्ते बस्तर • Yash';
-  } else if (frame < 500) {
-    // Scene 2: Follow & The 30% Commission Problem (8 - 16.6s)
+  } else if (frame < 640) {
+    // Scene 2: Follow & The 30% Commission Problem (10.6 - 21.3s)
     sceneIndex = 2;
     sceneBadge = '🚫 30% COMMISSION TRAP BAND';
     eyebrow = 'curious';
@@ -48,8 +48,8 @@ export const BastarYashAd: React.FC = () => {
     bgGradient = 'radial-gradient(circle at 50% 30%, #450A0A 0%, #030712 80%)';
     subtitleText = 'तो सबसे पहले मुझे फ़ॉलो कर लो! क्योंकि अब दुकान ऑनलाइन ले जाने के लिए 30% कमीशन देने की बिल्कुल ज़रूरत नहीं है।';
     highlightWord = 'Follow Karo • 0% Commission';
-  } else if (frame < 850) {
-    // Scene 3: Kirana Counter QR & WhatsApp Cart (16.6 - 28.3s)
+  } else if (frame < 1100) {
+    // Scene 3: Kirana Counter QR & WhatsApp Cart (21.3 - 36.6s)
     sceneIndex = 3;
     sceneBadge = '🛒 COUNTER QR + WHATSAPP CART';
     eyebrow = 'neutral';
@@ -57,8 +57,8 @@ export const BastarYashAd: React.FC = () => {
     bgGradient = 'radial-gradient(circle at 50% 30%, #064E3B 0%, #030712 75%)';
     subtitleText = 'वेबसाइट है shop.lifesolvenow.com! किराना दुकान पर QR लगाओ और डायरेक्ट WhatsApp पर आर्डर पाओ!';
     highlightWord = '1-Click WhatsApp Order & QR';
-  } else if (frame < 1200) {
-    // Scene 4: Repair Shops Digital Job Sheet (28.3 - 40s)
+  } else if (frame < 1550) {
+    // Scene 4: Repair Shops Digital Job Sheet (36.6 - 51.6s)
     sceneIndex = 4;
     sceneBadge = '📱 DIGITAL JOB SHEET & WARRANTY';
     eyebrow = 'neutral';
@@ -66,8 +66,8 @@ export const BastarYashAd: React.FC = () => {
     bgGradient = 'radial-gradient(circle at 50% 30%, #0f172a 0%, #030712 80%)';
     subtitleText = 'रिपेयर वाले पुराना रजिस्टर छोड़ो! ग्राहक को दो डिजिटल जॉब शीट, लाइव स्टेटस और WhatsApp वारंटी!';
     highlightWord = 'Digital Job Sheet #1042';
-  } else if (frame < 1500) {
-    // Scene 5: Restaurant Table QR & Live Kitchen KOT (40 - 50s)
+  } else if (frame < 1920) {
+    // Scene 5: Restaurant Table QR & Live Kitchen KOT (51.6 - 64s)
     sceneIndex = 5;
     sceneBadge = '🍽️ TABLE QR & KITCHEN ORDERS';
     eyebrow = 'raised';
@@ -76,7 +76,7 @@ export const BastarYashAd: React.FC = () => {
     subtitleText = 'रेस्टोरेंट के लिए टेबल पर स्मार्ट QR और लाइव किचन स्क्रीन! और सबसे बड़ी बात — Zero Percent Commission!';
     highlightWord = 'Table QR & Live Kitchen';
   } else {
-    // Scene 6: Bastar Call to Action (50 - 60.06s)
+    // Scene 6: Bastar Call to Action (64 - 76.5s)
     sceneIndex = 6;
     sceneBadge = '🚀 BASTAR DIGITAL BANAO • FREE TRIAL';
     eyebrow = 'neutral';
