@@ -22,274 +22,494 @@ export const BastarYashAd: React.FC = () => {
   const headY = currentFrameInfo.headY || 0;
   const headRot = currentFrameInfo.headRot || 0;
 
-  // Scene timing configuration across 1709 frames (~56.95 seconds)
-  // Scene 1: Namaste Bastar Market (0 - 280)
-  // Scene 2: Online Shop with Mobile (280 - 540)
-  // Scene 3: Kirana Counter QR & WhatsApp (540 - 900)
-  // Scene 4: Mobile & Electronics Repair (900 - 1280)
-  // Scene 5: Restaurant & Cafe Table QR (1280 - 1520)
-  // Scene 6: Digital Store Success & CTA (1520 - 1709)
-  let activeImageKey = 'bastar_market.jpg';
-  let eyebrow: EyebrowState = 'neutral';
-  let sceneStart = 0;
-  let sceneEnd = 280;
+  // ==========================================
+  // SCENE PROGRESSION (Exact Audio Timing)
+  // Scene 1: 0 - 312 (~0s - 10.4s) -> Ramesh Bhaiya Jagdalpur Market
+  // Scene 2: 312 - 530 (~10.4s - 17.7s) -> Grahak Kahan Gaye? Mobile Ordering
+  // Scene 3: 530 - 705 (~17.7s - 23.5s) -> Badi Apps 20-30% Commission Trap
+  // Scene 4: 705 - 1048 (~23.5s - 34.9s) -> shop.lifesolvenow.com 0% Commission & WhatsApp
+  // Scene 5: 1048 - 1369 (~34.9s - 45.6s) -> Dukan Housefull & 100% Munafa
+  // Scene 6: 1369 - 1792 (~45.6s - 59.7s) -> Yash Persona Intro & Follow CTA
+  // ==========================================
 
-  if (frame < 280) {
-    activeImageKey = 'bastar_market.jpg';
-    eyebrow = 'neutral';
-    sceneStart = 0;
-    sceneEnd = 280;
-  } else if (frame < 540) {
-    activeImageKey = 'shopkeeper_mobile.jpg';
-    eyebrow = 'curious';
-    sceneStart = 280;
-    sceneEnd = 540;
-  } else if (frame < 900) {
-    activeImageKey = 'kirana_counter.jpg';
-    eyebrow = 'neutral';
-    sceneStart = 540;
-    sceneEnd = 900;
-  } else if (frame < 1280) {
-    activeImageKey = 'repair_technician.jpg';
-    eyebrow = 'neutral';
-    sceneStart = 900;
-    sceneEnd = 1280;
-  } else if (frame < 1520) {
-    activeImageKey = 'cafe_dining.jpg';
-    eyebrow = 'raised';
-    sceneStart = 1280;
-    sceneEnd = 1520;
+  let topBadgeText = 'BASTAR MARKET • JAGDALPUR';
+  let topBadgeColor = '#F59E0B';
+  let topBadgeBg = 'rgba(15, 23, 42, 0.9)';
+  let activeImageKey = 'ramesh_bhaiya_counter.jpg';
+  let sceneProgress = 0;
+  let showYashAvatar = false;
+  let eyebrow: EyebrowState = 'neutral';
+
+  // Subtitle pieces
+  let subPrefix = '';
+  let subHighlight = '';
+  let subHighlightColor = '#FDE047';
+  let subSuffix = '';
+
+  if (frame < 160) {
+    // 0 - 5.34s
+    topBadgeText = '📍 BASTAR MARKET • JAGDALPUR';
+    topBadgeColor = '#F59E0B';
+    activeImageKey = 'ramesh_bhaiya_counter.jpg';
+    sceneProgress = frame / 160;
+    subPrefix = 'Bastar ke ';
+    subHighlight = 'JAGDALPUR MARKET';
+    subHighlightColor = '#FDE047';
+    subSuffix = ' mein Ramesh bhaiya raat ko hisaab jod rahe the...';
+  } else if (frame < 312) {
+    // 5.34s - 10.39s
+    topBadgeText = '⚠️ ROZ 10 GRAHAK GAYAB';
+    topBadgeColor = '#EF4444';
+    activeImageKey = 'ramesh_bhaiya_counter.jpg';
+    sceneProgress = (frame - 160) / 152;
+    subPrefix = 'Par pichle 2 mahine mein, ';
+    subHighlight = 'ROZ 10 GRAHAK';
+    subHighlightColor = '#EF4444';
+    subSuffix = ' achanak gayab ho rahe the!';
+  } else if (frame < 415) {
+    // 10.39s - 13.77s
+    topBadgeText = '🤔 GRAHAK KAHAN GAYE?';
+    topBadgeColor = '#38BDF8';
+    activeImageKey = 'kirana_authentic.jpg';
+    sceneProgress = (frame - 312) / 103;
+    subPrefix = 'Grahak ';
+    subHighlight = 'DUKAN AANA';
+    subHighlightColor = '#FDE047';
+    subSuffix = ' chhod nahi rahe the...';
+  } else if (frame < 530) {
+    // 13.77s - 17.66s
+    topBadgeText = '📱 MOBILE SE ORDER KA CRAZE';
+    topBadgeColor = '#38BDF8';
+    activeImageKey = 'kirana_authentic.jpg';
+    sceneProgress = (frame - 415) / 115;
+    subPrefix = 'Wo bas ';
+    subHighlight = 'MOBILE SE AASAN ORDER';
+    subHighlightColor = '#38BDF8';
+    subSuffix = ' dhoondh rahe the!';
+  } else if (frame < 705) {
+    // 17.66s - 23.50s
+    topBadgeText = '❌ 20% - 30% COMMISSION TRAP';
+    topBadgeColor = '#EF4444';
+    activeImageKey = 'commission_trap.jpg';
+    sceneProgress = (frame - 530) / 175;
+    subPrefix = 'Badi apps par dukan daalna matlab ';
+    subHighlight = '20% SE 30% COMMISSION';
+    subHighlightColor = '#EF4444';
+    subSuffix = ' ka nuksaan!';
+  } else if (frame < 870) {
+    // 23.50s - 29.0s
+    topBadgeText = '💡 THE SMART DISCOVERY';
+    topBadgeColor = '#10B981';
+    activeImageKey = 'digital_growth.jpg';
+    sceneProgress = (frame - 705) / 165;
+    subPrefix = 'Tab unhe pata chala ';
+    subHighlight = 'shop.lifesolvenow.com';
+    subHighlightColor = '#34D399';
+    subSuffix = ' ke baare mein!';
+  } else if (frame < 1048) {
+    // 29.0s - 34.94s
+    topBadgeText = '✅ 0% COMMISSION REVOLUTION';
+    topBadgeColor = '#10B981';
+    activeImageKey = 'digital_growth.jpg';
+    sceneProgress = (frame - 870) / 178;
+    subPrefix = 'ZERO COMMISSION, 2 minute mein ';
+    subHighlight = 'DUKAN ONLINE';
+    subHighlightColor = '#FDE047';
+    subSuffix = ' aur order WhatsApp par!';
+  } else if (frame < 1200) {
+    // 34.94s - 40.0s
+    topBadgeText = '🎉 NATIJA? GRAHAK WAPAS!';
+    topBadgeColor = '#F59E0B';
+    activeImageKey = 'shop_customer_interaction.jpg';
+    sceneProgress = (frame - 1048) / 152;
+    subPrefix = 'Natija? ';
+    subHighlight = 'WAHI PURANE GRAHAK WAPAS!';
+    subHighlightColor = '#FDE047';
+    subSuffix = ' Dukan par fir se bheed!';
+  } else if (frame < 1369) {
+    // 40.0s - 45.64s
+    topBadgeText = '💰 100% MUNAFA AAPKA';
+    topBadgeColor = '#10B981';
+    activeImageKey = 'shop_customer_interaction.jpg';
+    sceneProgress = (frame - 1200) / 169;
+    subPrefix = 'Order mobile se, payment counter par, aur ';
+    subHighlight = '100% MUNAFA';
+    subHighlightColor = '#34D399';
+    subSuffix = ' Ramesh bhaiya ki jeb mein!';
   } else {
-    activeImageKey = 'digital_store.jpg';
-    eyebrow = 'neutral';
-    sceneStart = 1520;
-    sceneEnd = 1709;
+    // 45.64s - 59.71s (Yash Persona Outro & CTA)
+    showYashAvatar = true;
+    eyebrow = 'raised';
+    topBadgeText = '👑 YASH • BASTAR DIGITAL MISSION';
+    topBadgeColor = '#38BDF8';
+    activeImageKey = 'bastar_market.jpg';
+    sceneProgress = (frame - 1369) / 423;
+
+    if (frame < 1448) {
+      subPrefix = 'Namaste Bastar, ';
+      subHighlight = 'MAIN HU YASH!';
+      subHighlightColor = '#FDE047';
+      subSuffix = ' Main leke aaya hu aisi suvidha...';
+    } else if (frame < 1570) {
+      subPrefix = 'Apni dukan ko ';
+      subHighlight = 'DIGITAL BANAO';
+      subHighlightColor = '#38BDF8';
+      subSuffix = ' bina kisi commission ke!';
+    } else {
+      subPrefix = 'Aaj hi visit karo ';
+      subHighlight = 'shop.lifesolvenow.com';
+      subHighlightColor = '#34D399';
+      subSuffix = ' aur nayi suvidhaon ke liye follow kar lo!';
+    }
   }
 
-  // Floating Pulse Animation for character
-  const pulse = Math.sin(frame * 0.12) * 4;
+  // Smooth Ken-Burns Zoom/Pan per scene
+  const zoomScale = interpolate(sceneProgress, [0, 1], [1.02, 1.12]);
+  const panY = interpolate(sceneProgress, [0, 1], [0, -30]);
 
-  // Smooth Photo Card Entrance & Subtle Ken Burns Zoom
-  const photoScale = interpolate(
-    frame,
-    [sceneStart, sceneEnd],
-    [1.0, 1.05],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
-  );
+  // Image source resolution
+  const imageSource = (assets as Record<string, string>)[activeImageKey] || (assets as Record<string, string>)['bastar_market.jpg'];
 
-  const activeImageUri = (assets as Record<string, string>)[activeImageKey] || '';
+  // Avatar pop-in animation
+  const avatarScale = showYashAvatar ? spring({ frame: frame - 1369, fps, config: { damping: 14, stiffness: 100 } }) : 0;
+
+  // WhatsApp chat bubble pop-in (active during Scene 4: 705 - 1048)
+  const isScene4 = frame >= 705 && frame < 1048;
+  const waBubbleProgress = isScene4 ? spring({ frame: frame - 720, fps, config: { damping: 12, stiffness: 120 } }) : 0;
+
+  // Commission warning card pop-in (active during Scene 3: 530 - 705)
+  const isScene3 = frame >= 530 && frame < 705;
+  const commCardProgress = isScene3 ? spring({ frame: frame - 540, fps, config: { damping: 12, stiffness: 120 } }) : 0;
 
   return (
     <div
       style={{
-        flex: 1,
         width: 1080,
         height: 1920,
-        // ☀️ LIGHT / DAY COLOR THEME
-        background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 40%, #EFF6FF 100%)',
-        color: '#0F172A',
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '50px 40px',
         position: 'relative',
+        backgroundColor: '#0F172A',
+        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
         overflow: 'hidden',
       }}
     >
-      {/* Soft Daytime Ambient Sun Rays / Glow */}
+      {/* 1. BACKGROUND SCENE (Ken-Burns Animated) */}
       <div
         style={{
           position: 'absolute',
-          top: '-10%',
-          right: '-10%',
-          width: 800,
-          height: 800,
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(251, 191, 36, 0.18) 0%, rgba(255, 255, 255, 0) 70%)',
-          filter: 'blur(60px)',
-          pointerEvents: 'none',
-          zIndex: 1,
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '10%',
-          left: '-10%',
-          width: 700,
-          height: 700,
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(255, 255, 255, 0) 70%)',
-          filter: 'blur(60px)',
-          pointerEvents: 'none',
-          zIndex: 1,
-        }}
-      />
-
-      {/* TOP: LOGO ONLY (Clean LifeSolveNow Marketplace Branding) */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 16,
-          zIndex: 10,
-          background: '#FFFFFF',
-          padding: '14px 36px',
-          borderRadius: 999,
-          boxShadow: '0 8px 30px rgba(15, 23, 42, 0.08)',
-          border: '1.5px solid #E2E8F0',
+          top: -40,
+          left: -40,
+          width: 1160,
+          height: 2000,
+          transform: `scale(${zoomScale}) translateY(${panY}px)`,
+          transition: 'transform 0.1s linear',
         }}
       >
-        <div
-          style={{
-            width: 44,
-            height: 44,
-            borderRadius: 12,
-            background: 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 24,
-            boxShadow: '0 4px 12px rgba(37, 99, 235, 0.3)',
-          }}
-        >
-          🛍️
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span
-            style={{
-              fontSize: 28,
-              fontWeight: 900,
-              letterSpacing: '-0.02em',
-              color: '#0F172A',
-              lineHeight: 1.1,
-            }}
-          >
-            shop <span style={{ color: '#2563EB' }}>LifeSolveNow</span>
-          </span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 700,
-              color: '#64748B',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-            }}
-          >
-            Local Multi-Store Marketplace
-          </span>
-        </div>
-      </div>
-
-      {/* 📸 UPPER/CENTER STAGE: VIVID PHOTO SHOWCASE FRAME */}
-      {/* Character points to and presents this real-life photo */}
-      <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          maxWidth: 960,
-          height: 880,
-          borderRadius: 36,
-          overflow: 'hidden',
-          boxShadow: '0 24px 60px rgba(15, 23, 42, 0.16)',
-          border: '6px solid #FFFFFF',
-          background: '#F1F5F9',
-          zIndex: 5,
-          marginTop: 20,
-        }}
-      >
-        {activeImageUri && (
+        {imageSource && (
           <img
-            src={activeImageUri}
-            alt="Showcase Visual"
+            src={imageSource}
+            alt="Scene Background"
             style={{
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              transform: `scale(${photoScale})`,
-              transition: 'transform 0.1s ease-out',
+              filter: showYashAvatar ? 'brightness(0.55) blur(12px)' : 'brightness(0.92)',
             }}
           />
         )}
-        {/* Soft daylight frame border glow */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            borderRadius: 30,
-            boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.08)',
-            pointerEvents: 'none',
-          }}
-        />
       </div>
 
-      {/* 🎭 LOWER STAGE: CHARACTER (Yash / Alex) PRESENTING */}
+      {/* 2. GRADIENT VIGNETTES (For Crisp Readability of Badges & Subtitles) */}
       <div
         style={{
-          position: 'relative',
+          position: 'absolute',
+          top: 0,
+          left: 0,
           width: '100%',
+          height: 380,
+          background: 'linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)',
+          pointerEvents: 'none',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          height: 600,
+          background: 'linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 50%, transparent 100%)',
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* 3. CONTENT KAHUNA STYLE: TOP DYNAMIC PILL BADGE & LOGO */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 60,
+          left: 50,
+          right: 50,
+          zIndex: 40,
           display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'flex-end',
-          zIndex: 10,
-          marginTop: -160,
+          alignItems: 'center',
+          justifyContent: 'space-between',
         }}
       >
+        {/* Brand Logo Pill */}
         <div
           style={{
-            transform: `translateY(${pulse}px)`,
-            filter: 'drop-shadow(0 20px 40px rgba(15, 23, 42, 0.18))',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            backgroundColor: 'rgba(0,0,0,0.75)',
+            backdropFilter: 'blur(12px)',
+            padding: '10px 22px',
+            borderRadius: 24,
+            border: '1.5px solid rgba(255,255,255,0.2)',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
           }}
         >
-          <AlexCharacter
-            mouthState={mouth}
-            eyeState={eyes}
-            eyebrowState={eyebrow}
-            headY={headY}
-            headRot={headRot}
-            width={620}
-            height={620}
-          />
+          <span style={{ color: '#FACC15', fontWeight: 900, fontSize: 22, letterSpacing: 0.5 }}>shop</span>
+          <span style={{ color: '#FFFFFF', fontWeight: 800, fontSize: 22 }}>LifeSolveNow</span>
+        </div>
+
+        {/* Dynamic Context Pill Badge */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            backgroundColor: topBadgeBg,
+            backdropFilter: 'blur(16px)',
+            border: `2px solid ${topBadgeColor}`,
+            padding: '10px 26px',
+            borderRadius: 26,
+            boxShadow: `0 6px 24px rgba(0,0,0,0.6), 0 0 16px ${topBadgeColor}44`,
+          }}
+        >
+          <span
+            style={{
+              color: topBadgeColor,
+              fontSize: 22,
+              fontWeight: 900,
+              letterSpacing: 1.5,
+              textTransform: 'uppercase',
+            }}
+          >
+            {topBadgeText}
+          </span>
         </div>
       </div>
 
-      {/* 🔗 BOTTOM: WEBSITE LINK ONLY (Clean & Prominent) */}
+      {/* 4. DYNAMIC SCENE OVERLAYS (Floating High-Engagement UI Cards) */}
+
+      {/* Scene 3: Commission Trap Warning Card */}
+      {isScene3 && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 420,
+            left: '50%',
+            transform: `translateX(-50%) scale(${commCardProgress})`,
+            width: 920,
+            backgroundColor: 'rgba(15, 23, 42, 0.94)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: 36,
+            border: '3px solid #EF4444',
+            padding: '36px 44px',
+            boxShadow: '0 20px 60px rgba(239, 68, 68, 0.35)',
+            zIndex: 30,
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+            <span style={{ color: '#EF4444', fontWeight: 900, fontSize: 32, letterSpacing: 1 }}>❌ BADI DELIVERY APPS</span>
+            <span style={{ backgroundColor: '#EF4444', color: '#FFFFFF', padding: '6px 16px', borderRadius: 12, fontWeight: 900, fontSize: 20 }}>-25% CUT</span>
+          </div>
+          <div style={{ color: '#F87171', fontSize: 26, lineHeight: 1.6, marginBottom: 24 }}>
+            • 20% se 30% Har Order Par Commission<br />
+            • Mahine Ki Kamai Mein Se <strong style={{ color: '#FFFFFF', textDecoration: 'underline' }}>₹15,000 Kat Gaya</strong><br />
+            • Customer Data Unka, Dukandar Khali Haath!
+          </div>
+          <div style={{ backgroundColor: 'rgba(239, 68, 68, 0.15)', padding: '16px 24px', borderRadius: 18, borderLeft: '6px solid #EF4444' }}>
+            <span style={{ color: '#FCA5A5', fontSize: 24, fontWeight: 700 }}>⚠️ SALANA NUKSAAN: ₹1,80,000 SE ZYADA!</span>
+          </div>
+        </div>
+      )}
+
+      {/* Scene 4: WhatsApp Direct Order Solution Card */}
+      {isScene4 && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 360,
+            left: '50%',
+            transform: `translateX(-50%) scale(${waBubbleProgress})`,
+            width: 920,
+            backgroundColor: 'rgba(7, 94, 84, 0.94)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: 36,
+            border: '3px solid #25D366',
+            padding: '32px 38px',
+            boxShadow: '0 20px 60px rgba(37, 211, 102, 0.35)',
+            zIndex: 30,
+          }}
+        >
+          {/* WhatsApp Header */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24, borderBottom: '1px solid rgba(255,255,255,0.2)', paddingBottom: 16 }}>
+            <div style={{ width: 56, height: 56, borderRadius: '50%', backgroundColor: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, color: '#fff', fontWeight: 900 }}>💬</div>
+            <div>
+              <div style={{ color: '#FFFFFF', fontWeight: 900, fontSize: 28 }}>Bastar Direct WhatsApp Order</div>
+              <div style={{ color: '#A7F3D0', fontSize: 20 }}>Powered by shop.lifesolvenow.com</div>
+            </div>
+          </div>
+
+          {/* Incoming Customer Message */}
+          <div style={{ backgroundColor: '#FFFFFF', color: '#111827', padding: '18px 24px', borderRadius: '18px 18px 18px 4px', marginBottom: 18, maxWidth: '85%' }}>
+            <div style={{ fontWeight: 800, fontSize: 24, color: '#075E54', marginBottom: 6 }}>Grahak (Jagdalpur):</div>
+            <div style={{ fontSize: 22, lineHeight: 1.4 }}>Bhaiya 5kg Aashirvaad Aata aur 1L Tel ready rakhna, mai 10 min mein aa raha hu! 🙏</div>
+          </div>
+
+          {/* Outgoing Shopkeeper Message */}
+          <div style={{ backgroundColor: '#DCF8C6', color: '#111827', padding: '18px 24px', borderRadius: '18px 18px 4px 18px', marginLeft: 'auto', maxWidth: '85%', marginBottom: 24 }}>
+            <div style={{ fontWeight: 800, fontSize: 24, color: '#059669', marginBottom: 6 }}>Ramesh Bhaiya:</div>
+            <div style={{ fontSize: 22, lineHeight: 1.4 }}>Pack kar diya hai! Total: ₹680. <strong>0% Extra Commission Fee! ✅</strong></div>
+          </div>
+
+          {/* 0% Commission Badge */}
+          <div style={{ backgroundColor: '#10B981', padding: '14px 20px', borderRadius: 20, textAlign: 'center', boxShadow: '0 6px 20px rgba(16, 185, 129, 0.4)' }}>
+            <span style={{ color: '#FFFFFF', fontSize: 26, fontWeight: 900, letterSpacing: 1 }}>⚡ 0% SALES COMMISSION • 100% PROFIT AAPKA</span>
+          </div>
+        </div>
+      )}
+
+      {/* 5. SCENE 6: YASH (ALEX CHARACTER) TALKING AVATAR */}
+      {showYashAvatar && (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 250,
+            left: '50%',
+            transform: `translateX(-50%) scale(${avatarScale * 1.45})`,
+            zIndex: 35,
+            pointerEvents: 'none',
+          }}
+        >
+          <AlexCharacter
+            mouth={mouth}
+            eyes={eyes}
+            eyebrows={eyebrow}
+            headY={headY}
+            headRot={headRot}
+            scale={1.45}
+          />
+        </div>
+      )}
+
+      {/* 6. CONTENT KAHUNA STYLE KINETIC SUBTITLES */}
       <div
         style={{
-          zIndex: 15,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginBottom: 10,
+          position: 'absolute',
+          bottom: showYashAvatar ? 160 : 180,
+          left: 50,
+          right: 50,
+          zIndex: 45,
+          textAlign: 'center',
+          pointerEvents: 'none',
         }}
       >
         <div
           style={{
-            background: 'linear-gradient(135deg, #1E293B 0%, #0F172A 100%)',
-            color: '#FFFFFF',
-            padding: '16px 48px',
-            borderRadius: 999,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 14,
-            boxShadow: '0 12px 36px rgba(15, 23, 42, 0.25)',
+            display: 'inline-block',
+            backgroundColor: 'rgba(0, 0, 0, 0.82)',
+            backdropFilter: 'blur(12px)',
+            padding: '16px 36px',
+            borderRadius: 24,
             border: '2px solid rgba(255, 255, 255, 0.15)',
+            boxShadow: '0 12px 40px rgba(0, 0, 0, 0.9)',
           }}
         >
-          <span style={{ fontSize: 24 }}>🌐</span>
           <span
             style={{
-              fontSize: 32,
-              fontWeight: 900,
-              letterSpacing: '0.02em',
-              color: '#38BDF8',
+              fontSize: 42,
+              fontWeight: 800,
+              color: '#FFFFFF',
+              lineHeight: 1.35,
+              textShadow: '0 2px 10px rgba(0,0,0,0.8)',
             }}
           >
-            shop.lifesolvenow.com
+            {subPrefix}
+            <span
+              style={{
+                color: subHighlightColor,
+                fontWeight: 900,
+                fontSize: 46,
+                textTransform: 'uppercase',
+                textShadow: `0 0 25px ${subHighlightColor}88`,
+                padding: '0 6px',
+              }}
+            >
+              {subHighlight}
+            </span>
+            {subSuffix}
           </span>
+        </div>
+      </div>
+
+      {/* 7. BOTTOM ACTION BANNER: WEBSITE URL & CTA */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 40,
+          left: 50,
+          right: 50,
+          zIndex: 50,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          backgroundColor: 'rgba(15, 23, 42, 0.95)',
+          backdropFilter: 'blur(20px)',
+          padding: '18px 36px',
+          borderRadius: 30,
+          border: '2px solid rgba(16, 185, 129, 0.6)',
+          boxShadow: '0 10px 40px rgba(0,0,0,0.8), 0 0 20px rgba(16, 185, 129, 0.3)',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          <div
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: '50%',
+              backgroundColor: '#10B981',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#FFFFFF',
+              fontWeight: 900,
+              fontSize: 24,
+            }}
+          >
+            🛍️
+          </div>
+          <div>
+            <div style={{ color: '#A7F3D0', fontSize: 18, fontWeight: 700, letterSpacing: 1 }}>VISIT FREE MARKETPLACE:</div>
+            <div style={{ color: '#FFFFFF', fontSize: 32, fontWeight: 900, letterSpacing: 0.5 }}>shop.lifesolvenow.com</div>
+          </div>
+        </div>
+
+        <div
+          style={{
+            backgroundColor: '#10B981',
+            color: '#FFFFFF',
+            padding: '12px 28px',
+            borderRadius: 24,
+            fontWeight: 900,
+            fontSize: 22,
+            boxShadow: '0 4px 15px rgba(16, 185, 129, 0.5)',
+            letterSpacing: 0.5,
+          }}
+        >
+          Follow @Yash 🚀
         </div>
       </div>
     </div>
