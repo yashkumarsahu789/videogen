@@ -22,104 +22,62 @@ export const BastarYashAd: React.FC = () => {
   const headY = currentFrameInfo.headY || 0;
   const headRot = currentFrameInfo.headRot || 0;
 
-  // Scene timing configuration across 2296 frames (~76.5 seconds)
-  let sceneIndex = 1;
-  let sceneBadge = '🌟 NAMASTE BASTAR • DUKANDAAR SPECIAL';
+  // Scene timing configuration across 1709 frames (~56.95 seconds)
+  // Scene 1: Namaste Bastar Market (0 - 280)
+  // Scene 2: Online Shop with Mobile (280 - 540)
+  // Scene 3: Kirana Counter QR & WhatsApp (540 - 900)
+  // Scene 4: Mobile & Electronics Repair (900 - 1280)
+  // Scene 5: Restaurant & Cafe Table QR (1280 - 1520)
+  // Scene 6: Digital Store Success & CTA (1520 - 1709)
+  let activeImageKey = 'bastar_market.jpg';
   let eyebrow: EyebrowState = 'neutral';
-  let subtitleText = '';
-  let highlightWord = '';
-  let accentColor = '#FBBF24';
-  let bgImageKey = 'bastar_market.jpg';
-  let sceneStartFrame = 0;
-  let sceneEndFrame = 320;
-  let topicPill = '📍 BASTAR LOCAL MARKET';
+  let sceneStart = 0;
+  let sceneEnd = 280;
 
-  if (frame < 320) {
-    // Scene 1: Personal Intro & Bastar Hook (0 - 10.6s)
-    sceneIndex = 1;
-    sceneBadge = '🌟 NAMASTE BASTAR • YASH';
-    topicPill = '📍 BASTAR LOCAL MARKET';
+  if (frame < 280) {
+    activeImageKey = 'bastar_market.jpg';
     eyebrow = 'neutral';
-    accentColor = '#FBBF24';
-    bgImageKey = 'bastar_market.jpg';
-    sceneStartFrame = 0;
-    sceneEndFrame = 320;
-    subtitleText = 'नमस्ते बस्तर! मेरा नाम यश है... और मैं लेकर आ गया हूँ बस्तर के दुकानदारों के लिए एक ज़बरदस्त वेबसाइट!';
-    highlightWord = 'नमस्ते बस्तर • Yash';
-  } else if (frame < 640) {
-    // Scene 2: Follow & The 30% Commission Problem (10.6 - 21.3s)
-    sceneIndex = 2;
-    sceneBadge = '🚫 30% COMMISSION TRAP BAND';
-    topicPill = '💸 30% COMMISSION KA JHANJHAT';
+    sceneStart = 0;
+    sceneEnd = 280;
+  } else if (frame < 540) {
+    activeImageKey = 'shopkeeper_mobile.jpg';
     eyebrow = 'curious';
-    accentColor = '#EF4444';
-    bgImageKey = 'commission_trap.jpg';
-    sceneStartFrame = 320;
-    sceneEndFrame = 640;
-    subtitleText = 'तो सबसे पहले मुझे फ़ॉलो कर लो! क्योंकि अब दुकान ऑनलाइन ले जाने के लिए 30% कमीशन देने की बिल्कुल ज़रूरत नहीं है।';
-    highlightWord = 'Follow Karo • 0% Commission';
-  } else if (frame < 1100) {
-    // Scene 3: Kirana Counter QR & WhatsApp Cart (21.3 - 36.6s)
-    sceneIndex = 3;
-    sceneBadge = '🛒 COUNTER QR + WHATSAPP CART';
-    topicPill = '🏬 KIRANA DUKAN COUNTER QR';
+    sceneStart = 280;
+    sceneEnd = 540;
+  } else if (frame < 900) {
+    activeImageKey = 'kirana_counter.jpg';
     eyebrow = 'neutral';
-    accentColor = '#10B981';
-    bgImageKey = 'kirana_store.jpg';
-    sceneStartFrame = 640;
-    sceneEndFrame = 1100;
-    subtitleText = 'वेबसाइट है shop.lifesolvenow.com! किराना दुकान पर QR लगाओ और डायरेक्ट WhatsApp पर आर्डर पाओ!';
-    highlightWord = '1-Click WhatsApp Order & QR';
-  } else if (frame < 1550) {
-    // Scene 4: Repair Shops Digital Job Sheet (36.6 - 51.6s)
-    sceneIndex = 4;
-    sceneBadge = '📱 DIGITAL JOB SHEET & WARRANTY';
-    topicPill = '🔧 MOBILE & APPLIANCE REPAIR';
+    sceneStart = 540;
+    sceneEnd = 900;
+  } else if (frame < 1280) {
+    activeImageKey = 'repair_technician.jpg';
     eyebrow = 'neutral';
-    accentColor = '#38BDF8';
-    bgImageKey = 'repair_shop.jpg';
-    sceneStartFrame = 1100;
-    sceneEndFrame = 1550;
-    subtitleText = 'रिपेयर वाले पुराना रजिस्टर छोड़ो! ग्राहक को दो डिजिटल जॉब शीट, लाइव स्टेटस और WhatsApp वारंटी!';
-    highlightWord = 'Digital Job Sheet #1042';
-  } else if (frame < 1920) {
-    // Scene 5: Restaurant Table QR & Live Kitchen KOT (51.6 - 64s)
-    sceneIndex = 5;
-    sceneBadge = '🍽️ TABLE QR & KITCHEN ORDERS';
-    topicPill = '☕ CAFE & RESTAURANT TABLE QR';
+    sceneStart = 900;
+    sceneEnd = 1280;
+  } else if (frame < 1520) {
+    activeImageKey = 'cafe_dining.jpg';
     eyebrow = 'raised';
-    accentColor = '#F97316';
-    bgImageKey = 'restaurant_cafe.jpg';
-    sceneStartFrame = 1550;
-    sceneEndFrame = 1920;
-    subtitleText = 'रेस्टोरेंट के लिए टेबल पर स्मार्ट QR और लाइव किचन स्क्रीन! और सबसे बड़ी बात — Zero Percent Commission!';
-    highlightWord = 'Table QR & Live Kitchen';
+    sceneStart = 1280;
+    sceneEnd = 1520;
   } else {
-    // Scene 6: Bastar Call to Action (64 - 76.5s)
-    sceneIndex = 6;
-    sceneBadge = '🚀 BASTAR DIGITAL BANAO • FREE TRIAL';
-    topicPill = '✨ SHOP.LIFESOLVENOW.COM';
+    activeImageKey = 'digital_store.jpg';
     eyebrow = 'neutral';
-    accentColor = '#FBBF24';
-    bgImageKey = 'digital_growth.jpg';
-    sceneStartFrame = 1920;
-    sceneEndFrame = 2296;
-    subtitleText = 'अभी जाओ shop.lifesolvenow.com पर, Free Trial क्लेम करो, और अपने बस्तर के बिज़नेस को डिजिटल बनाओ!';
-    highlightWord = 'shop.lifesolvenow.com';
+    sceneStart = 1520;
+    sceneEnd = 1709;
   }
 
-  // Floating Pulse Animation
-  const pulse = Math.sin(frame * 0.12) * 5;
+  // Floating Pulse Animation for character
+  const pulse = Math.sin(frame * 0.12) * 4;
 
-  // Cinematic Ken Burns Zoom for Background Image
-  const sceneProgress = interpolate(
+  // Smooth Photo Card Entrance & Subtle Ken Burns Zoom
+  const photoScale = interpolate(
     frame,
-    [sceneStartFrame, sceneEndFrame],
-    [1, 1.08],
+    [sceneStart, sceneEnd],
+    [1.0, 1.05],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
   );
 
-  const bgImageUri = (assets as Record<string, string>)[bgImageKey] || '';
+  const activeImageUri = (assets as Record<string, string>)[activeImageKey] || '';
 
   return (
     <div
@@ -127,146 +85,163 @@ export const BastarYashAd: React.FC = () => {
         flex: 1,
         width: 1080,
         height: 1920,
-        backgroundColor: '#0F172A',
-        color: '#FFFFFF',
+        // ☀️ LIGHT / DAY COLOR THEME
+        background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 40%, #EFF6FF 100%)',
+        color: '#0F172A',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '60px 40px',
+        padding: '50px 40px',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      {/* 🖼️ BACKGROUND IMAGE LAYER WITH CINEMATIC ZOOM */}
-      {bgImageUri && (
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            overflow: 'hidden',
-            zIndex: 1,
-          }}
-        >
-          <img
-            src={bgImageUri}
-            alt="Scene background"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              transform: `scale(${sceneProgress})`,
-              transition: 'transform 0.1s ease-out',
-              filter: 'brightness(0.42) saturate(1.25) contrast(1.1)',
-            }}
-          />
-          {/* Cinematic Vignette Overlay */}
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background:
-                'linear-gradient(180deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.45) 45%, rgba(15, 23, 42, 0.94) 100%)',
-            }}
-          />
-        </div>
-      )}
-
-      {/* Background Animated Subtle Tech Grid */}
+      {/* Soft Daytime Ambient Sun Rays / Glow */}
       <div
         style={{
           position: 'absolute',
-          inset: 0,
-          backgroundImage:
-            'radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px), radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-          backgroundPosition: '0 0, 24px 24px',
-          opacity: 0.35,
+          top: '-10%',
+          right: '-10%',
+          width: 800,
+          height: 800,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(251, 191, 36, 0.18) 0%, rgba(255, 255, 255, 0) 70%)',
+          filter: 'blur(60px)',
           pointerEvents: 'none',
-          zIndex: 2,
+          zIndex: 1,
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '10%',
+          left: '-10%',
+          width: 700,
+          height: 700,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(255, 255, 255, 0) 70%)',
+          filter: 'blur(60px)',
+          pointerEvents: 'none',
+          zIndex: 1,
         }}
       />
 
-      {/* TOP HEADER: Badge & Current Discussion Topic */}
+      {/* TOP: LOGO ONLY (Clean LifeSolveNow Marketplace Branding) */}
       <div
         style={{
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
-          gap: 12,
+          justifyContent: 'center',
+          gap: 16,
           zIndex: 10,
-          width: '100%',
+          background: '#FFFFFF',
+          padding: '14px 36px',
+          borderRadius: 999,
+          boxShadow: '0 8px 30px rgba(15, 23, 42, 0.08)',
+          border: '1.5px solid #E2E8F0',
         }}
       >
         <div
           style={{
+            width: 44,
+            height: 44,
+            borderRadius: 12,
+            background: 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
             display: 'flex',
             alignItems: 'center',
-            gap: 12,
-            background: 'rgba(15, 23, 42, 0.75)',
-            backdropFilter: 'blur(16px)',
-            padding: '10px 28px',
-            borderRadius: 999,
-            border: `1.5px solid ${accentColor}88`,
-            boxShadow: `0 4px 24px ${accentColor}44`,
+            justifyContent: 'center',
+            fontSize: 24,
+            boxShadow: '0 4px 12px rgba(37, 99, 235, 0.3)',
           }}
         >
-          <span style={{ fontSize: 24 }}>✨</span>
+          🛍️
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           <span
             style={{
-              fontSize: 22,
-              fontWeight: 800,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              color: accentColor,
+              fontSize: 28,
+              fontWeight: 900,
+              letterSpacing: '-0.02em',
+              color: '#0F172A',
+              lineHeight: 1.1,
             }}
           >
-            {sceneBadge}
+            shop <span style={{ color: '#2563EB' }}>LifeSolveNow</span>
           </span>
-        </div>
-
-        {/* Current Topic Pill in Background */}
-        <div
-          style={{
-            background: 'rgba(0, 0, 0, 0.65)',
-            border: '1px solid rgba(255, 255, 255, 0.15)',
-            backdropFilter: 'blur(12px)',
-            padding: '6px 20px',
-            borderRadius: 999,
-            fontSize: 16,
-            color: '#E2E8F0',
-            fontWeight: 700,
-            letterSpacing: '0.06em',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-          }}
-        >
-          <span>{topicPill}</span>
-          <span>•</span>
-          <span style={{ color: '#38BDF8' }}>LIVE TOPIC</span>
+          <span
+            style={{
+              fontSize: 13,
+              fontWeight: 700,
+              color: '#64748B',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Local Multi-Store Marketplace
+          </span>
         </div>
       </div>
 
-      {/* CENTER STAGE: CHARACTER (Yash / Alex) & CONTEXTUAL VISUAL CARDS */}
+      {/* 📸 UPPER/CENTER STAGE: VIVID PHOTO SHOWCASE FRAME */}
+      {/* Character points to and presents this real-life photo */}
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+          maxWidth: 960,
+          height: 880,
+          borderRadius: 36,
+          overflow: 'hidden',
+          boxShadow: '0 24px 60px rgba(15, 23, 42, 0.16)',
+          border: '6px solid #FFFFFF',
+          background: '#F1F5F9',
+          zIndex: 5,
+          marginTop: 20,
+        }}
+      >
+        {activeImageUri && (
+          <img
+            src={activeImageUri}
+            alt="Showcase Visual"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transform: `scale(${photoScale})`,
+              transition: 'transform 0.1s ease-out',
+            }}
+          />
+        )}
+        {/* Soft daylight frame border glow */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            borderRadius: 30,
+            boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.08)',
+            pointerEvents: 'none',
+          }}
+        />
+      </div>
+
+      {/* 🎭 LOWER STAGE: CHARACTER (Yash / Alex) PRESENTING */}
       <div
         style={{
           position: 'relative',
           width: '100%',
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
           justifyContent: 'center',
-          zIndex: 5,
+          alignItems: 'flex-end',
+          zIndex: 10,
+          marginTop: -160,
         }}
       >
-        {/* CHARACTER PUPPET: Yash (Alex Character) */}
         <div
           style={{
-            position: 'relative',
             transform: `translateY(${pulse}px)`,
-            filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.8))',
+            filter: 'drop-shadow(0 20px 40px rgba(15, 23, 42, 0.18))',
           }}
         >
           <AlexCharacter
@@ -275,329 +250,46 @@ export const BastarYashAd: React.FC = () => {
             eyebrowState={eyebrow}
             headY={headY}
             headRot={headRot}
-            width={600}
-            height={600}
+            width={620}
+            height={620}
           />
         </div>
-
-        {/* SCENE 1: Namaste Bastar & Follow Card */}
-        {sceneIndex === 1 && (
-          <div
-            style={{
-              position: 'absolute',
-              top: '55%',
-              width: 640,
-              background: 'rgba(15, 23, 42, 0.92)',
-              backdropFilter: 'blur(20px)',
-              border: '2px solid #FBBF24',
-              borderRadius: 26,
-              padding: '24px 30px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 12,
-              boxShadow: '0 24px 60px rgba(251, 191, 36, 0.35)',
-            }}
-          >
-            <div style={{ fontSize: 32, fontWeight: 900, color: '#FCD34D', textAlign: 'center' }}>
-              🙏 नमस्ते बस्तर!
-            </div>
-            <div style={{ fontSize: 20, color: '#FFFFFF', textAlign: 'center', fontWeight: 700 }}>
-              बस्तर के सभी दुकानदार भाइयों के लिए बड़ी खुशखबरी!
-            </div>
-            <div
-              style={{
-                background: '#F59E0B',
-                color: '#000000',
-                padding: '8px 24px',
-                borderRadius: 99,
-                fontSize: 17,
-                fontWeight: 900,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 10,
-                boxShadow: '0 4px 16px rgba(245, 158, 11, 0.4)',
-              }}
-            >
-              <span>🔔</span> Follow @Yash for Business Growth
-            </div>
-          </div>
-        )}
-
-        {/* SCENE 2: Follow Me & 30% Commission Trap Band */}
-        {sceneIndex === 2 && (
-          <div
-            style={{
-              position: 'absolute',
-              top: '54%',
-              width: 640,
-              background: 'rgba(69, 10, 10, 0.94)',
-              backdropFilter: 'blur(20px)',
-              border: '2px solid #EF4444',
-              borderRadius: 24,
-              padding: '22px 28px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 12,
-              boxShadow: '0 24px 60px rgba(239, 68, 68, 0.4)',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span style={{ fontSize: 36 }}>❌</span>
-              <div style={{ fontSize: 22, fontWeight: 900, color: '#FCA5A5' }}>
-                Apps Ko 25-30% Commission Dena Band!
-              </div>
-            </div>
-            <div
-              style={{
-                background: 'rgba(0,0,0,0.5)',
-                padding: '12px 18px',
-                borderRadius: 14,
-                fontSize: 17,
-                fontWeight: 700,
-                color: '#FCD34D',
-                border: '1px solid rgba(255,255,255,0.1)',
-              }}
-            >
-              🔔 Follow kar lo — Saari digital suvidhayein ab free aur aasan!
-            </div>
-          </div>
-        )}
-
-        {/* SCENE 3: Kirana Counter QR & 1-Click WhatsApp Order */}
-        {sceneIndex === 3 && (
-          <div
-            style={{
-              position: 'absolute',
-              top: '52%',
-              width: 650,
-              background: 'rgba(6, 78, 59, 0.94)',
-              backdropFilter: 'blur(20px)',
-              border: '2px solid #10B981',
-              borderRadius: 24,
-              padding: '22px 28px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 12,
-              boxShadow: '0 24px 60px rgba(16, 185, 129, 0.4)',
-            }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: 20, fontWeight: 900, color: '#A7F3D0' }}>
-                🏬 Kirana Counter QR Standee
-              </span>
-              <span style={{ background: '#047857', color: '#FFFFFF', padding: '4px 10px', borderRadius: 8, fontSize: 14, fontWeight: 800 }}>
-                0% Cut
-              </span>
-            </div>
-            <div style={{ background: 'rgba(0,0,0,0.4)', padding: '12px 16px', borderRadius: 14, display: 'flex', alignItems: 'center', gap: 14, border: '1px solid rgba(255,255,255,0.1)' }}>
-              <span style={{ fontSize: 32 }}>📲</span>
-              <div>
-                <div style={{ fontSize: 18, fontWeight: 800, color: '#FFFFFF' }}>
-                  Grahak Ne QR Scan Kiya
-                </div>
-                <div style={{ fontSize: 15, color: '#D1FAE5', marginTop: 2 }}>
-                  Direct WhatsApp Order: 5kg Chawal, 2L Tel (Bina app install kiye)
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* SCENE 4: Repair Digital Job Sheet & Warranty */}
-        {sceneIndex === 4 && (
-          <div
-            style={{
-              position: 'absolute',
-              top: '52%',
-              width: 650,
-              background: 'rgba(15, 23, 42, 0.94)',
-              backdropFilter: 'blur(20px)',
-              border: '2px solid #38BDF8',
-              borderRadius: 24,
-              padding: '22px 28px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 12,
-              boxShadow: '0 24px 60px rgba(56, 189, 248, 0.35)',
-            }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: 20, fontWeight: 900, color: '#7DD3FC' }}>
-                📱 Mobile / TV Repair Job #1042
-              </span>
-              <span style={{ background: '#0369A1', color: '#FFFFFF', padding: '4px 10px', borderRadius: 8, fontSize: 14, fontWeight: 800 }}>
-                No Register!
-              </span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 15, fontWeight: 700, color: '#BAE6FD' }}>
-              <span>✅ Received</span>
-              <span>➔</span>
-              <span>⚙️ Diagnosing</span>
-              <span>➔</span>
-              <span style={{ color: '#FDE047' }}>🎉 Ready!</span>
-            </div>
-            <div style={{ background: '#075985', padding: '10px 14px', borderRadius: 12, textAlign: 'center', fontSize: 16, fontWeight: 800, color: '#FFFFFF' }}>
-              💬 WhatsApp Pickup Msg & 6 Months Digital Warranty
-            </div>
-          </div>
-        )}
-
-        {/* SCENE 5: Restaurant Table QR & 0% Commission */}
-        {sceneIndex === 5 && (
-          <div
-            style={{
-              position: 'absolute',
-              top: '52%',
-              width: 650,
-              background: 'rgba(67, 20, 7, 0.94)',
-              backdropFilter: 'blur(20px)',
-              border: '2px solid #F97316',
-              borderRadius: 24,
-              padding: '22px 28px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 12,
-              boxShadow: '0 24px 60px rgba(249, 115, 22, 0.4)',
-            }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: 20, fontWeight: 900, color: '#FED7AA' }}>
-                🍽️ Table QR & Live Kitchen Orders
-              </span>
-              <span style={{ background: '#C2410C', color: '#FFFFFF', padding: '4px 10px', borderRadius: 8, fontSize: 14, fontWeight: 800 }}>
-                Zero Commission
-              </span>
-            </div>
-            <div style={{ background: 'rgba(0,0,0,0.4)', padding: '12px 16px', borderRadius: 14, display: 'flex', alignItems: 'center', gap: 14, border: '1px solid rgba(255,255,255,0.1)' }}>
-              <span style={{ fontSize: 32 }}>🍳</span>
-              <div>
-                <div style={{ fontSize: 18, fontWeight: 800, color: '#FFFFFF' }}>
-                  Dine-In Customer Scanned Table 3
-                </div>
-                <div style={{ fontSize: 15, color: '#FFEDD5', marginTop: 2 }}>
-                  Kitchen Screen Par Live Order: Chai, Samosa, Chowmein!
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* SCENE 6: Grand Bastar Call to Action */}
-        {sceneIndex === 6 && (
-          <div
-            style={{
-              position: 'absolute',
-              top: '50%',
-              width: 660,
-              background: 'rgba(30, 27, 75, 0.94)',
-              backdropFilter: 'blur(20px)',
-              border: '2px solid #FBBF24',
-              borderRadius: 26,
-              padding: '24px 30px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 14,
-              boxShadow: '0 24px 60px rgba(251, 191, 36, 0.4)',
-            }}
-          >
-            <div
-              style={{
-                background: '#F59E0B',
-                color: '#000000',
-                padding: '6px 20px',
-                borderRadius: 99,
-                fontSize: 18,
-                fontWeight: 900,
-              }}
-            >
-              FREE TRIAL ACTIVATION READY
-            </div>
-            <div style={{ fontSize: 32, fontWeight: 900, color: '#FCD34D', textAlign: 'center' }}>
-              shop.lifesolvenow.com
-            </div>
-            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center' }}>
-              <span style={{ background: 'rgba(255,255,255,0.15)', padding: '6px 14px', borderRadius: 8, fontSize: 16, fontWeight: 700 }}>
-                ✓ 0% Sales Commission
-              </span>
-              <span style={{ background: 'rgba(255,255,255,0.15)', padding: '6px 14px', borderRadius: 8, fontSize: 16, fontWeight: 700 }}>
-                ✓ Made for Bastar
-              </span>
-              <span style={{ background: 'rgba(255,255,255,0.15)', padding: '6px 14px', borderRadius: 8, fontSize: 16, fontWeight: 700 }}>
-                ✓ Free Starter Plan
-              </span>
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* BOTTOM SECTION: SUBTITLES & TRUST FOOTER */}
+      {/* 🔗 BOTTOM: WEBSITE LINK ONLY (Clean & Prominent) */}
       <div
         style={{
-          width: '100%',
+          zIndex: 15,
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
-          gap: 16,
-          zIndex: 10,
+          justifyContent: 'center',
+          marginBottom: 10,
         }}
       >
-        {/* Highlight Word Pill */}
         <div
           style={{
-            background: `${accentColor}25`,
-            backdropFilter: 'blur(12px)',
-            border: `1.5px solid ${accentColor}`,
-            padding: '8px 24px',
-            borderRadius: 999,
-            fontSize: 22,
-            fontWeight: 800,
-            color: accentColor,
-            textAlign: 'center',
-            boxShadow: `0 4px 20px ${accentColor}44`,
-          }}
-        >
-          {highlightWord}
-        </div>
-
-        {/* Dynamic Subtitle Box */}
-        <div
-          style={{
-            width: '100%',
-            background: 'rgba(15, 23, 42, 0.88)',
-            backdropFilter: 'blur(20px)',
-            borderRadius: 24,
-            padding: '24px 32px',
-            border: '1px solid rgba(255, 255, 255, 0.16)',
-            textAlign: 'center',
-            fontSize: 26,
-            fontWeight: 700,
-            lineHeight: 1.4,
+            background: 'linear-gradient(135deg, #1E293B 0%, #0F172A 100%)',
             color: '#FFFFFF',
-            boxShadow: '0 16px 40px rgba(0, 0, 0, 0.6)',
-          }}
-        >
-          {subtitleText}
-        </div>
-
-        {/* Persistent Trust Footer */}
-        <div
-          style={{
+            padding: '16px 48px',
+            borderRadius: 999,
             display: 'flex',
             alignItems: 'center',
-            gap: 20,
-            fontSize: 16,
-            fontWeight: 700,
-            color: '#CBD5E1',
-            textShadow: '0 2px 4px rgba(0,0,0,0.6)',
+            gap: 14,
+            boxShadow: '0 12px 36px rgba(15, 23, 42, 0.25)',
+            border: '2px solid rgba(255, 255, 255, 0.15)',
           }}
         >
-          <span>⭐ 0% Commission</span>
-          <span>•</span>
-          <span>📍 Proudly in Bastar</span>
-          <span>•</span>
-          <span>⚡ Free Trial Ready</span>
+          <span style={{ fontSize: 24 }}>🌐</span>
+          <span
+            style={{
+              fontSize: 32,
+              fontWeight: 900,
+              letterSpacing: '0.02em',
+              color: '#38BDF8',
+            }}
+          >
+            shop.lifesolvenow.com
+          </span>
         </div>
       </div>
     </div>
