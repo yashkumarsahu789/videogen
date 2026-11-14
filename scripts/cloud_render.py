@@ -197,11 +197,9 @@ def main():
 
     # Project aliases & legacy name mappings
     ALIASES = {
-        "shop_30s_ad": "bastar_yash_ad",
         "dukandar_ad_v1": "bastar_yash_ad",
         "yash_ad": "bastar_yash_ad",
         "bastar_ad": "bastar_yash_ad",
-        "shop_ad": "bastar_yash_ad",
     }
     if target in ALIASES:
         mapped = ALIASES[target]
