@@ -69,9 +69,15 @@ def render_single_project(project_dir: Path):
     # Find main audio file if available
     audio_file = None
     if audio_dir.exists():
-        audio_candidates = list(audio_dir.glob("*.mp3")) + list(audio_dir.glob("*.wav"))
-        if audio_candidates:
-            audio_file = audio_candidates[0]
+        if (audio_dir / "voiceover.mp3").exists():
+            audio_file = audio_dir / "voiceover.mp3"
+        elif (audio_dir / "voiceover.wav").exists():
+            audio_file = audio_dir / "voiceover.wav"
+        else:
+            audio_candidates = list(audio_dir.glob("*.mp3")) + list(audio_dir.glob("*.wav"))
+            if audio_candidates:
+                audio_file = audio_candidates[0]
+        if audio_file:
             print(f"🎵 Found audio: {audio_file.name}")
 
     # Check if visemes.json exists, if not generate it
@@ -136,8 +142,11 @@ def render_single_project(project_dir: Path):
             "ffmpeg", "-y",
             "-i", str(temp_video),
             "-i", str(audio_file),
+            "-map", "0:v:0",
+            "-map", "1:a:0",
             "-c:v", "copy",
             "-c:a", "aac", "-b:a", "192k",
+            "-shortest",
             "-movflags", "+faststart",
             str(final_output)
         ]
