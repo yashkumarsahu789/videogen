@@ -209,10 +209,11 @@ def main():
         "dukandar_ad_v1": "bastar_yash_ad",
         "yash_ad": "bastar_yash_ad",
         "bastar_ad": "bastar_yash_ad",
+        "shop_30s_ad": "apni_dukaan_anime",
     }
     if target in ALIASES:
         mapped = ALIASES[target]
-        print(f"🔄 Remapping target '{target}' -> '{mapped}' (Latest updated project with Day Theme & Photo Presentation)")
+        print(f"🔄 Remapping target '{target}' -> '{mapped}' (Switched to latest Anime campaign with character avatar)")
         target = mapped
 
     if target == "samples":
