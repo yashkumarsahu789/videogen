@@ -6,14 +6,14 @@ on:
       target:
         description: 'Select render target'
         required: true
-        default: 'latest'
+        default: 'apni_dukaan_anime'
         type: choice
         options:
+          - 'apni_dukaan_anime'
           - 'latest'
           - 'all'
-          - 'samples'
-          - 'dukandar_ad_v1'
-          - 'alex_talking_demo'
+          - 'shop_avatar_ad'
+          - 'bastar_yash_ad'
       custom_project:
         description: 'Or enter exact project folder name in video_output/'
         required: false
@@ -27,6 +27,9 @@ on:
       - 'brandkit/**'
     branches:
       - main
+
+permissions:
+  contents: write
 
 jobs:
   render:
@@ -77,7 +80,7 @@ jobs:
         run: |
           TARGET="${CUSTOM_PROJ:-$INPUT_TARGET}"
           if [ -z "$TARGET" ]; then
-            TARGET="latest"
+            TARGET="apni_dukaan_anime"
           fi
           echo "Executing Render for Target: $TARGET"
           python scripts/cloud_render.py --target "$TARGET"
@@ -91,3 +94,16 @@ jobs:
             video_output/**/output/*.mp4
           if-no-files-found: warn
           retention-days: 14
+
+      - name: 🚀 Publish Direct Download Release
+        uses: softprops/action-gh-release@v2
+        if: success()
+        with:
+          tag_name: latest-video
+          name: "🎬 Latest Master Video Render"
+          body: "Rendered via GitHub Actions Cloud Runners for shop LifeSolveNow."
+          files: |
+            exports/*.mp4
+            video_output/**/output/*.mp4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
