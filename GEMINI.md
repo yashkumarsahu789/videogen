@@ -96,4 +96,15 @@ Jab bhi user video banane ya script likhne bole:
     1. **Dukandar / Retailer Acquisition (B2B):** Local dukan ko bina mehenge app ke digital banana, Google par laana, customers ko wapas dukan se jodna.
     2. **Local Shopper Discovery (B2C):** Apne aas-paas ki dukan se direct WhatsApp order karna, fast delivery, trusted neighbourhood shopping.
 
+---
+
+## 6. 🛑 Mandatory User Review & Approval Gate (Pehle Permission, Fir Git Push)
+> **Core Rule:** Jab bhi koi nayi video banegi, AI pehle **Script, Scene Direction aur Images/Visuals** chat me user ko dikhayega aur unki explicit permission lega.
+
+* **Strict 3-Step Approval Protocol:**
+  1. **Show Script & Visuals First:** Har video ke liye pehle scene-by-scene script aur uske visuals/images user ke saamne present karo.
+  2. **Ask Explicit Permission:** User se clear permission maango: *"Kya ye script aur visuals aapko pasand aaye? Kya hum ise GitHub me push karke render process start karein?"*
+  3. **No Git Push Without Green Signal:** Jab tak user explicitly approve ("Haan", "Go ahead", "Push kardo") na kare, tab tak GitHub par push ya render start nahi karna hai.
+
+
 
