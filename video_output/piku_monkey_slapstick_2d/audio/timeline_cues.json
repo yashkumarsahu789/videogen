@@ -1,0 +1,66 @@
+[
+  {
+    "id": "scene1_piku",
+    "speaker": "piku",
+    "start": 0.0,
+    "end": 5.42,
+    "duration": 5.42,
+    "text": "वाह! इतना मीठा और रसीला आम! मज़ा आ गया!"
+  },
+  {
+    "id": "scene1_leopard",
+    "speaker": "chitu",
+    "start": 5.67,
+    "end": 11.12,
+    "duration": 5.45,
+    "text": "भालू देख! आज आम के साथ इस बंदर का भी शिकार करेंगे!"
+  },
+  {
+    "id": "scene1_bear",
+    "speaker": "bhalu",
+    "start": 11.37,
+    "end": 16.63,
+    "duration": 5.26,
+    "text": "हाहाहा! चल चुपके से झपट्टा मारते हैं!"
+  },
+  {
+    "id": "scene2_launch",
+    "speaker": "both",
+    "start": 16.88,
+    "end": 22.37,
+    "duration": 5.5,
+    "text": "अरे नहीं! ये बांस की डाल तो हवा में उछल गयी! बचाओओओ!"
+  },
+  {
+    "id": "scene2_piku_laugh",
+    "speaker": "piku",
+    "start": 22.62,
+    "end": 25.91,
+    "duration": 3.29,
+    "text": "हाहाहाहा! टाटा बाय बाय!"
+  },
+  {
+    "id": "scene3_beehive",
+    "speaker": "bhalu",
+    "start": 26.16,
+    "end": 32.4,
+    "duration": 6.24,
+    "text": "अरे बाप रे! मधुमक्खियों का छत्ता मेरे सिर पर फंस गया! भागो!"
+  },
+  {
+    "id": "scene4_slip",
+    "speaker": "chitu",
+    "start": 32.65,
+    "end": 38.94,
+    "duration": 6.29,
+    "text": "केले का छिलका! मेरा पैर फिसल रहा है! रास्ते से हटो भालू!"
+  },
+  {
+    "id": "scene5_splash_win",
+    "speaker": "piku",
+    "start": 39.19,
+    "end": 45.98,
+    "duration": 6.79,
+    "text": "छपाक! पानी ठंडा लगा ना? पीकू से पंगा मत लेना दोस्तों!"
+  }
+]
