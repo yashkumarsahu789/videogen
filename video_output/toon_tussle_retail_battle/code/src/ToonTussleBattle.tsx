@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, Audio, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import visemesData from "./visemes.json";
 import timelineData from "./timeline_cues.json";
 
@@ -57,8 +57,6 @@ export const ToonTussleBattle: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#060810", color: "#F8FAFC", fontFamily: "sans-serif", overflow: "hidden" }}>
-      <Audio src={staticFile("audio/voiceover.mp3")} />
-
       {/* Cyber Arena Background */}
       <AbsoluteFill
         style={{
