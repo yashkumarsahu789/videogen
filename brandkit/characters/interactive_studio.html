@@ -185,10 +185,10 @@
     <div class="stage-card">
       <div class="char-tabs">
         <button id="tab_alex" class="char-tab tab-alex active" onclick="switchChar('alex')">👨‍💻 Alex (Aarav)</button>
-        <button id="tab_maya" class="char-tab tab-maya" onclick="switchChar('maya')">👩‍💼 Maya (Swara)</button>
+        <button id="tab_maya" class="char-tab tab-maya" onclick="switchChar('maya')">👩‍🎨 Maya (Ananya)</button>
         <button id="tab_kabir" class="char-tab tab-kabir" onclick="switchChar('kabir')">🧔 Kabir (Kabir)</button>
-        <button id="tab_riya" class="char-tab tab-riya" onclick="switchChar('riya')">👩 Riya (Real Human / Swara)</button>
-        <button id="tab_dev" class="char-tab tab-dev" onclick="switchChar('dev')">👨 Dev (Real Human / Madhur)</button>
+        <button id="tab_riya" class="char-tab tab-riya" onclick="switchChar('riya')">👧 Riya (Riya)</button>
+        <button id="tab_dev" class="char-tab tab-dev" onclick="switchChar('dev')">⚡ Dev (Dev)</button>
       </div>
 
       <div class="character-view" id="stage">
@@ -205,7 +205,7 @@
             ▶ PLAY SPEECH & SYNC
           </button>
         </div>
-        <div class="audio-subtitle" id="subtitleBox">"Namaste dosto! Main hu Alex, aapka vibe coding aur tech creator partner."</div>
+        <div class="audio-subtitle" id="subtitleBox">"नमस्ते दोस्तों! मैं हूँ Alex, आपका वाइब कोडिंग और टेक पार्टनर।"</div>
       </div>
     </div>
 
@@ -252,20 +252,20 @@
             <span style="color:#38BDF8; font-weight: 700;">Voice: Aarav</span>
           </div>
           <div class="roster-card" onclick="switchChar('maya')">
-            <div><strong style="color: #06B6D4;">2. Maya (Modern Chic)</strong><br><small style="color:#94A3B8">Modern Tech Director</small></div>
-            <span style="color:#06B6D4; font-weight: 700;">Voice: Swara</span>
+            <div><strong style="color: #EC4899;">2. Maya</strong><br><small style="color:#94A3B8">AI Director</small></div>
+            <span style="color:#EC4899; font-weight: 700;">Voice: Ananya</span>
           </div>
           <div class="roster-card" onclick="switchChar('kabir')">
             <div><strong style="color: #F59E0B;">3. Kabir</strong><br><small style="color:#94A3B8">Deep Explainer</small></div>
             <span style="color:#F59E0B; font-weight: 700;">Voice: Kabir</span>
           </div>
           <div class="roster-card" onclick="switchChar('riya')">
-            <div><strong style="color: #10B981;">4. Riya (Real Human Look)</strong><br><small style="color:#94A3B8">Magnetic Storyteller</small></div>
-            <span style="color:#10B981; font-weight: 700;">Voice: Swara (Warm)</span>
+            <div><strong style="color: #10B981;">4. Riya</strong><br><small style="color:#94A3B8">Lifestyle Vlogger</small></div>
+            <span style="color:#10B981; font-weight: 700;">Voice: Riya</span>
           </div>
           <div class="roster-card" onclick="switchChar('dev')">
-            <div><strong style="color: #3B82F6;">5. Dev (Real Human Look)</strong><br><small style="color:#94A3B8">Charismatic Leader</small></div>
-            <span style="color:#3B82F6; font-weight: 700;">Voice: Madhur (Deep)</span>
+            <div><strong style="color: #34D399;">5. Dev</strong><br><small style="color:#94A3B8">30s Speed Coder</small></div>
+            <span style="color:#34D399; font-weight: 700;">Voice: Dev</span>
           </div>
         </div>
       </div>
@@ -282,7 +282,7 @@
         color: '#38BDF8',
         audio: 'alex/alex_sample_5s.mp3',
         visemesFile: 'alex/alex_sample_5s_visemes.json',
-        sub: 'Namaste dosto! Main hu Alex, aapka vibe coding aur tech creator partner.'
+        sub: 'नमस्ते दोस्तों! मैं हूँ Alex, आपका वाइब कोडिंग और टेक पार्टनर।'
       },
       maya: {
         name: 'Maya (Modern Chic)',
@@ -290,7 +290,7 @@
         color: '#06B6D4',
         audio: 'maya/maya_sample_5s.mp3',
         visemesFile: 'maya/maya_sample_5s_visemes.json',
-        sub: 'Future ab intezaar nahi karta. LifeSolveNow ke sath aapka business digital banta hai — instant, smart aur 100% profitable.'
+        sub: 'फ्यूचर अब इंतज़ार नहीं करता। LifeSolveNow के साथ आपका बिज़नेस डिजिटल बनता है — इंस्टेंट, स्मार्ट और 100% प्रॉफिटेबल।'
       },
       kabir: {
         name: 'Kabir',
@@ -298,7 +298,7 @@
         color: '#F59E0B',
         audio: 'kabir/kabir_sample_5s.mp3',
         visemesFile: 'kabir/kabir_sample_5s_visemes.json',
-        sub: 'Greetings. Main Kabir hu, deep explainers aur complex topics ko simple banane ke liye.'
+        sub: 'नमस्कार। मैं कबीर हूँ, डीप एक्सप्लेनर और मुश्किल टॉपिक्स को आसान बनाने के लिए।'
       },
       riya: {
         name: 'Riya (Real Human Look)',
@@ -306,7 +306,7 @@
         color: '#10B981',
         audio: 'riya/riya_sample_5s.mp3',
         visemesFile: 'riya/riya_sample_5s_visemes.json',
-        sub: 'Aapki dukan sirf ek dukan nahi, aapki pehchaan hai. Aaj hi apni dukan ko WhatsApp aur Google se jodiye — 0% commission par!'
+        sub: 'आपकी दुकान सिर्फ एक दुकान नहीं, आपकी पहचान है। आज ही अपनी दुकान को WhatsApp और Google से जोड़िए — 0% कमीशन पर!'
       },
       dev: {
         name: 'Dev (Real Human Look)',
@@ -314,7 +314,7 @@
         color: '#3B82F6',
         audio: 'dev/dev_sample_5s.mp3',
         visemesFile: 'dev/dev_sample_5s_visemes.json',
-        sub: 'Sach suniye: Delivery apps aapki kamai ka 25% kaat leti hain. LifeSolveNow par 0% commission aur direct customer connect. Ab faisla aapka hai!'
+        sub: 'सच सुनिए: डिलीवरी ऐप्स आपकी कमाई का 25% काट लेती हैं। LifeSolveNow पर 0% कमीशन और डायरेक्ट कस्टमर कनेक्ट। अब फैसला आपका है!'
       }
     };
 

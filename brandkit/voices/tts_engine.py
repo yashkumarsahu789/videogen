@@ -34,10 +34,16 @@ async def synthesize_async(voice_id: str, text: str, output_path: str, rate: str
     
     out_file = Path(output_path).resolve()
     out_file.parent.mkdir(parents=True, exist_ok=True)
+
+    # Phonetic normalization for Hindi/Hinglish TTS:
+    # 'par' in Latin English dictionaries is pronounced non-rhotic '/pɑː/' ('paa').
+    # Replacing with Devanagari 'पर' guarantees crisp, authentic Hindi 'par' pronunciation.
+    import re
+    normalized_text = re.sub(r'\bpar\b', 'पर', text, flags=re.IGNORECASE)
     
     import edge_tts
     communicate = edge_tts.Communicate(
-        text=text,
+        text=normalized_text,
         voice=model_voice,
         rate=effective_rate,
         pitch=effective_pitch
