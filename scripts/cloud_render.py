@@ -165,15 +165,21 @@ def render_single_project(project_dir: Path):
     print(f"   📤 Export Copy:  {export_output}")
     return True
 
+def is_renderable(p: Path) -> bool:
+    if not p.is_dir():
+        return False
+    code = p / "code"
+    return (code / "src" / "index.ts").exists() or (code / "render.py").exists()
+
 def get_latest_project() -> Path:
     video_output = ROOT_DIR / "video_output"
     if not video_output.exists():
         return None
 
-    # 1. Try finding latest project from git commit history
+    # 1. Try finding latest project from git commit history that is renderable
     try:
         git_res = subprocess.run(
-            ["git", "log", "-n", "1", "--pretty=format:", "--name-only", "video_output/"],
+            ["git", "log", "-n", "10", "--pretty=format:", "--name-only", "video_output/"],
             cwd=str(ROOT_DIR), capture_output=True, text=True
         )
         if git_res.returncode == 0 and git_res.stdout.strip():
@@ -183,13 +189,13 @@ def get_latest_project() -> Path:
                     parts = line.split("/")
                     if len(parts) >= 2:
                         candidate = video_output / parts[1]
-                        if candidate.is_dir() and (candidate / "code").exists():
+                        if is_renderable(candidate):
                             return candidate
     except Exception:
         pass
 
     # 2. Fallback to filesystem modification time
-    projects = [p for p in video_output.iterdir() if p.is_dir() and (p / "code").exists()]
+    projects = [p for p in video_output.iterdir() if is_renderable(p)]
     if not projects:
         return None
     projects.sort(key=lambda p: p.stat().st_mtime, reverse=True)
