@@ -63,8 +63,8 @@ def render_single_project(project_dir: Path):
     root_tsx = code_dir / "src" / "Root.tsx"
 
     if not src_index.exists():
-        print(f"⚠️ No src/index.ts found in {code_dir}. Skipping.")
-        return False
+        print(f"ℹ️ No Remotion src/index.ts found in {code_dir} (AI Notebook project). Skipping cloud video build gracefully.")
+        return True
 
     # Find main audio file if available
     audio_file = None
