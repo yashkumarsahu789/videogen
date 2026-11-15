@@ -112,7 +112,7 @@ def render_single_project(project_dir: Path):
         npx_bin, "remotion", "render",
         "src/index.ts", comp_id,
         str(temp_video),
-        "--concurrency=2"
+        "--concurrency=4"
     ]
     if os.name != "nt":
         render_cmd.extend(["--gl=angle", "--enable-multiprocess-on-linux"])
