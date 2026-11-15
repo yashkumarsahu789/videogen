@@ -53,24 +53,24 @@ export const MayaCharacter: React.FC<CharacterProps> = ({
         </filter>
       </defs>
 
-      {/* BODY / JACKET */}
+      {/* BODY / MODERN CHIC BLAZER */}
       <g id="maya_body" transform={`translate(0, ${headY * 0.3})`}>
-        {/* Shoulders */}
+        {/* Modern Sharp Tailored Blazer */}
         <path
-          d="M 160 620 C 160 500, 220 470, 300 470 C 380 470, 440 500, 440 620 L 470 800 L 130 800 Z"
-          fill="url(#maya_jacket)"
+          d="M 145 610 C 145 490, 210 460, 300 460 C 390 460, 455 490, 455 610 L 485 800 L 115 800 Z"
+          fill="#0F172A"
           filter="url(#maya_shadow)"
         />
-        {/* High-Collar V-Neck Trim */}
+        {/* Deep V-Neck Inner Silk Top */}
         <path
-          d="M 230 470 L 300 560 L 370 470 L 340 470 L 300 525 L 260 470 Z"
-          fill="#EC4899"
+          d="M 240 460 L 300 550 L 360 460 Z"
+          fill="#0284C7"
         />
-        {/* Neon Magenta Zipper Line */}
-        <line x1="300" y1="560" x2="300" y2="780" stroke="#EC4899" strokeWidth="4" strokeLinecap="round" />
-        {/* AI Studio Tech Pin / Badge */}
-        <circle cx="230" cy="540" r="14" fill="#A855F7" stroke="#F472B6" strokeWidth="3" />
-        <circle cx="230" cy="540" r="5" fill="#FFFFFF" />
+        {/* Minimalist Electric Cyan Lapel Piping */}
+        <path d="M 235 460 L 295 565 L 300 780" stroke="#06B6D4" strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M 365 460 L 305 565" stroke="#06B6D4" strokeWidth="3.5" strokeLinecap="round" />
+        {/* Modern Silver Clasp */}
+        <rect x="294" y="558" width="12" height="6" rx="3" fill="#E2E8F0" />
       </g>
 
       {/* HEAD GROUP */}
@@ -78,40 +78,46 @@ export const MayaCharacter: React.FC<CharacterProps> = ({
         id="maya_head"
         transform={`translate(300, 335) rotate(${headRot}) translate(-300, -335) translate(0, ${headY})`}
       >
-        {/* Neck */}
-        <path d="M 268 360 L 268 480 L 332 480 L 332 360 Z" fill="#E8B29C" />
+        {/* Elegant Neck & Shadow */}
+        <path d="M 268 355 L 268 475 L 332 475 L 332 355 Z" fill="#E2A688" />
+        <path d="M 268 355 C 280 375, 320 375, 332 355 L 332 390 L 268 390 Z" fill="#D49372" opacity="0.6" />
 
-        {/* Earrings */}
-        <circle cx="180" cy="315" r="10" fill="#F43F5E" />
-        <circle cx="420" cy="315" r="10" fill="#F43F5E" />
+        {/* Modern Titanium Hoop Earrings */}
+        <ellipse cx="178" cy="318" rx="4" ry="12" fill="none" stroke="#38BDF8" strokeWidth="3" />
+        <ellipse cx="422" cy="318" rx="4" ry="12" fill="none" stroke="#38BDF8" strokeWidth="3" />
 
         {/* Ears */}
         <circle cx="185" cy="310" r="24" fill="#F7C6B0" />
         <circle cx="415" cy="310" r="24" fill="#F7C6B0" />
 
-        {/* Face Shape */}
+        {/* Refined Face Structure */}
         <path
-          d="M 195 240 C 195 140, 405 140, 405 240 C 405 365, 355 415, 300 415 C 245 415, 195 365, 195 240 Z"
-          fill="url(#maya_skin)"
+          d="M 192 235 C 192 135, 408 135, 408 235 C 408 360, 355 412, 300 412 C 245 412, 192 360, 192 235 Z"
+          fill="#FCE7D8"
           filter="url(#maya_shadow)"
         />
 
-        {/* Hair - Back Bob Volume */}
+        {/* Sleek Asymmetrical Modern Bob Hair (Back) */}
         <path
-          d="M 160 220 C 160 90, 440 90, 440 220 C 450 320, 430 380, 400 400 C 410 280, 390 120, 300 120 C 210 120, 190 280, 200 400 C 170 380, 150 320, 160 220 Z"
-          fill="#1E1035"
+          d="M 160 210 C 160 80, 440 80, 440 210 C 452 310, 432 375, 395 395 C 405 270, 385 110, 300 110 C 215 110, 195 270, 205 395 C 168 375, 148 310, 160 210 Z"
+          fill="#18181B"
         />
 
-        {/* Hair - Stylish Angled Bangs */}
+        {/* Chic Layered Front Bangs with Subtle Violet & Cyan Highlights */}
         <path
-          d="M 170 210 C 190 110, 260 90, 340 95 C 420 100, 435 150, 425 240 C 405 170, 350 165, 300 185 C 250 205, 210 190, 170 210 Z"
-          fill="url(#maya_hair)"
+          d="M 170 200 C 190 100, 260 85, 340 90 C 420 95, 435 145, 422 230 C 400 160, 345 155, 295 175 C 245 195, 205 180, 170 200 Z"
+          fill="#27272A"
         />
-        {/* Magenta Hair Streak Highlight */}
         <path
-          d="M 230 115 C 270 105, 330 110, 370 140"
-          stroke="#D946EF"
-          strokeWidth="6"
+          d="M 230 105 C 270 95, 340 100, 375 130"
+          stroke="#A855F7"
+          strokeWidth="5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 255 120 C 290 112, 335 118, 360 142"
+          stroke="#06B6D4"
+          strokeWidth="3"
           strokeLinecap="round"
         />
 
@@ -121,8 +127,8 @@ export const MayaCharacter: React.FC<CharacterProps> = ({
         {/* Eyes (Left & Right) */}
         <MayaEyes state={eyeState} />
 
-        {/* Subtle Nose */}
-        <path d="M 300 285 C 297 302, 294 310, 304 314" stroke="#E2A690" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+        {/* Sculpted Nose */}
+        <path d="M 300 280 C 297 298, 293 306, 304 310" stroke="#D49372" strokeWidth="3" strokeLinecap="round" fill="none" />
 
         {/* Dynamic Mouth (Visemes) */}
         <g transform="translate(300, 360)">

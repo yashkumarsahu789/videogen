@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "characters": {
     "alex": {
       "id": "alex",
@@ -13,18 +13,18 @@
     },
     "maya": {
       "id": "maya",
-      "name": "Maya",
-      "title": "The AI Creative Director",
-      "voice_id": "ananya",
-      "voice_name": "Ananya",
-      "style": "Cyber high-collar jacket, violet hair, magenta accents",
+      "name": "Maya (Modern Chic)",
+      "title": "The Modern Tech Creative Director",
+      "voice_id": "swara",
+      "voice_name": "Swara (Modern AI Lead)",
+      "style": "Modern sharp tailored blazer, cyan lapel piping, sleek asymmetrical bob",
       "language": "Hinglish / Hindi",
       "component_file": "maya/MayaCharacter.tsx"
     },
     "kabir": {
       "id": "kabir",
       "name": "Kabir",
-      "title": "The Deep Explainer & Documentary Lead",
+      "title": "The Deep Explainer & Trust Anchor",
       "voice_id": "kabir",
       "voice_name": "Kabir",
       "style": "Charcoal turtleneck & blazer, chiseled beard, gold pin",
@@ -33,24 +33,23 @@
     },
     "riya": {
       "id": "riya",
-      "name": "Riya",
-      "title": "The Lifestyle & Community Creator",
-      "voice_id": "riya",
-      "voice_name": "Riya",
-      "style": "Mustard sweater, white collar, wavy chestnut hair, blush",
+      "name": "Riya (Real Human Look)",
+      "title": "The Real Human Creator & Storyteller",
+      "voice_id": "swara_warm",
+      "voice_name": "Swara (Warm Magnetic Storyteller)",
+      "style": "Real human look, warm Indian skin tone, flowing layered hair, emerald-teal kurti/blazer",
       "language": "Hindi / English",
       "component_file": "riya/RiyaCharacter.tsx"
     },
     "dev": {
       "id": "dev",
-      "name": "Dev",
-      "title": "The 30-Second Speed Coder & Hacker",
-      "voice_id": "dev",
-      "voice_name": "Dev",
-      "style": "Techwear bomber, gaming headphones, neon green hair spikes",
-      "language": "Hinglish / English",
+      "name": "Dev (Real Human Look)",
+      "title": "The Real Human Charismatic Leader",
+      "voice_id": "madhur",
+      "voice_name": "Madhur (Charismatic Leader Voice)",
+      "style": "Real human look, textured fade haircut, sharp jawline with stubble, navy tailored shirt",
+      "language": "Hinglish / Hindi",
       "component_file": "dev/DevCharacter.tsx"
     }
   }
 }
-

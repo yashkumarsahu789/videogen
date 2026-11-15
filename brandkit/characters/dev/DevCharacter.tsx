@@ -52,23 +52,22 @@ export const DevCharacter: React.FC<CharacterProps> = ({
 
       {/* BODY / TECHWEAR BOMBER */}
       <g id="dev_body" transform={`translate(0, ${headY * 0.3})`}>
+        {/* Modern Crisp Navy Tailored Shirt with White Inner Crewneck */}
         <path
-          d="M 150 620 C 150 490, 220 470, 300 470 C 380 470, 450 490, 450 620 L 480 800 L 120 800 Z"
-          fill="url(#dev_jacket)"
+          d="M 140 610 C 140 480, 210 455, 300 455 C 390 455, 460 480, 460 610 L 490 800 L 110 800 Z"
+          fill="#1E293B"
           filter="url(#dev_shadow)"
         />
-        {/* Neon Green Zipper Track */}
-        <line x1="300" y1="470" x2="300" y2="800" stroke="#10B981" strokeWidth="4" />
-        {/* Chest Graphic Badge */}
-        <rect x="210" y="550" width="45" height="22" rx="4" fill="#047857" stroke="#34D399" strokeWidth="2" />
-        <text x="232" y="566" textAnchor="middle" fill="#FFFFFF" fontSize="13" fontWeight="900" fontFamily="monospace">DEV</text>
-
-        {/* Gaming Headphones Around Neck */}
-        <path d="M 210 470 C 210 540, 390 540, 390 470" stroke="#27272A" strokeWidth="22" strokeLinecap="round" fill="none" />
-        <path d="M 210 470 C 210 540, 390 540, 390 470" stroke="#10B981" strokeWidth="6" strokeLinecap="round" fill="none" />
-        {/* Earcups */}
-        <ellipse cx="205" cy="460" rx="20" ry="26" fill="#18181B" stroke="#10B981" strokeWidth="3" />
-        <ellipse cx="395" cy="460" rx="20" ry="26" fill="#18181B" stroke="#10B981" strokeWidth="3" />
+        {/* White Inner Crewneck Collar */}
+        <path d="M 260 455 C 260 495, 340 495, 340 455 Z" fill="#F8FAFC" />
+        {/* Open Shirt Collar & Buttons */}
+        <path d="M 235 455 L 270 515 L 255 530" stroke="#334155" strokeWidth="3" fill="#1E293B" />
+        <path d="M 365 455 L 330 515 L 345 530" stroke="#334155" strokeWidth="3" fill="#1E293B" />
+        <line x1="300" y1="510" x2="300" y2="780" stroke="#0F172A" strokeWidth="3.5" />
+        <circle cx="300" cy="545" r="3" fill="#CBD5E1" />
+        <circle cx="300" cy="590" r="3" fill="#CBD5E1" />
+        {/* Modern Minimalist Smartwatch */}
+        <rect x="445" y="660" width="22" height="32" rx="6" fill="#0F172A" stroke="#38BDF8" strokeWidth="2" />
       </g>
 
       {/* HEAD GROUP */}
@@ -76,35 +75,35 @@ export const DevCharacter: React.FC<CharacterProps> = ({
         id="dev_head"
         transform={`translate(300, 335) rotate(${headRot}) translate(-300, -335) translate(0, ${headY})`}
       >
-        {/* Neck */}
-        <path d="M 268 360 L 268 470 L 332 470 L 332 360 Z" fill="#E8B09A" />
+        {/* Strong Masculine Neck */}
+        <path d="M 262 350 L 262 470 L 338 470 L 338 350 Z" fill="#C5855A" />
+        <path d="M 262 350 C 275 372, 325 372, 338 350 L 338 382 L 262 382 Z" fill="#B06E44" opacity="0.6" />
+        <circle cx="178" cy="310" r="26" fill="#C5855A" />
+        <circle cx="422" cy="310" r="26" fill="#C5855A" />
 
-        {/* Ears */}
-        <circle cx="180" cy="305" r="26" fill="#F6C3AE" />
-        <circle cx="180" cy="305" r="14" fill="#DF9F88" />
-        <circle cx="420" cy="305" r="26" fill="#F6C3AE" />
-        <circle cx="420" cy="305" r="14" fill="#DF9F88" />
-
-        {/* Face Shape */}
+        {/* Sharp Masculine Real-Human Jawline */}
         <path
-          d="M 195 240 C 195 140, 405 140, 405 240 C 405 365, 360 418, 300 418 C 240 418, 195 365, 195 240 Z"
-          fill="url(#dev_skin)"
+          d="M 188 230 C 188 130, 412 130, 412 230 C 412 360, 365 418, 300 418 C 235 418, 188 360, 188 230 Z"
+          fill="#E8A779"
           filter="url(#dev_shadow)"
         />
 
-        {/* Hair - Spiky Dynamic Silhouette */}
+        {/* Groomed 5 O'Clock Stubble / Beard Shadow */}
+        <path d="M 194 310 C 194 380, 240 418, 300 418 C 360 418, 406 380, 406 310 C 406 345, 385 405, 300 405 C 215 405, 194 345, 194 310 Z" fill="#1C1815" opacity="0.45" />
+        <path d="M 268 340 Q 300 334 332 340 Q 300 350 268 340 Z" fill="#1C1815" opacity="0.4" />
+
+        {/* Modern Textured Fade Haircut (No Cartoon Spikes) */}
         <path
-          d="M 170 230 C 160 140, 200 90, 250 80 L 270 45 L 300 70 L 340 40 L 360 75 L 410 65 L 430 140 C 440 220, 430 300, 420 320 C 420 200, 400 120, 300 120 C 200 120, 180 200, 180 320 C 170 300, 160 270, 170 230 Z"
-          fill="#18181B"
+          d="M 175 190 C 185 110, 255 85, 335 90 C 410 95, 425 140, 418 190 C 395 140, 345 130, 295 142 C 245 154, 205 160, 175 190 Z"
+          fill="#1C1917"
         />
-        {/* Front Hair Spikes */}
         <path
-          d="M 180 200 C 200 130, 240 100, 300 100 C 360 100, 410 130, 420 200 C 390 160, 360 160, 330 180 C 310 160, 280 150, 250 170 C 220 160, 200 180, 180 200 Z"
-          fill="url(#dev_hair)"
+          d="M 182 170 C 210 90, 280 75, 355 82 C 405 88, 420 120, 415 165 C 385 110, 330 102, 280 115 C 230 128, 200 135, 182 170 Z"
+          fill="#292524"
         />
-        {/* Neon Green Spiked Highlights */}
-        <path d="M 265 60 L 290 85" stroke="#10B981" strokeWidth="5" strokeLinecap="round" />
-        <path d="M 335 55 L 350 85" stroke="#10B981" strokeWidth="5" strokeLinecap="round" />
+        {/* Fade Sides Hair */}
+        <path d="M 172 210 C 172 170, 185 145, 200 135 L 188 220 Z" fill="#1C1917" opacity="0.85" />
+        <path d="M 428 210 C 428 170, 415 145, 400 135 L 412 220 Z" fill="#1C1917" opacity="0.85" />
 
         {/* Eyebrows */}
         <DevEyebrows state={eyebrowState} />
@@ -112,8 +111,8 @@ export const DevCharacter: React.FC<CharacterProps> = ({
         {/* Eyes (Left & Right) */}
         <DevEyes state={eyeState} />
 
-        {/* Sharp Nose */}
-        <path d="M 300 275 L 295 306 L 306 310" stroke="#DF9F88" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        {/* Defined Masculine Nose */}
+        <path d="M 300 265 L 294 306 L 306 310" stroke="#A8653C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
 
         {/* Dynamic Mouth (Visemes) */}
         <g transform="translate(300, 360)">

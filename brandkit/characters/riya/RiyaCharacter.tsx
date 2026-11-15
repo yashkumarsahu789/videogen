@@ -52,17 +52,16 @@ export const RiyaCharacter: React.FC<CharacterProps> = ({
 
       {/* BODY / MUSTARD SWEATER */}
       <g id="riya_body" transform={`translate(0, ${headY * 0.3})`}>
+        {/* Real Human Warm Elegant Outfit (Emerald Tailored Kurti/Blazer) */}
         <path
-          d="M 160 620 C 160 500, 220 480, 300 480 C 380 480, 440 500, 440 620 L 470 800 L 130 800 Z"
-          fill="url(#riya_sweater)"
+          d="M 150 610 C 150 490, 215 460, 300 460 C 385 460, 450 490, 450 610 L 480 800 L 120 800 Z"
+          fill="#0F766E"
           filter="url(#riya_shadow)"
         />
-        {/* White Peter Pan Collar */}
-        <path d="M 235 480 C 255 520, 290 520, 300 495 C 290 480, 255 470, 235 480 Z" fill="#FFFFFF" />
-        <path d="M 365 480 C 345 520, 310 520, 300 495 C 310 480, 345 470, 365 480 Z" fill="#FFFFFF" />
-        {/* Sweater Knit Texture Lines */}
-        <line x1="280" y1="550" x2="280" y2="780" stroke="#B45309" strokeWidth="2.5" strokeDasharray="4 4" />
-        <line x1="320" y1="550" x2="320" y2="780" stroke="#B45309" strokeWidth="2.5" strokeDasharray="4 4" />
+        {/* Gold Zari Accent Border */}
+        <path d="M 245 460 L 300 545 L 355 460 Z" fill="#134E4A" />
+        <path d="M 245 460 L 300 545 L 355 460" stroke="#F59E0B" strokeWidth="3.5" fill="none" strokeLinecap="round" />
+        <line x1="300" y1="545" x2="300" y2="780" stroke="#F59E0B" strokeWidth="2.5" />
       </g>
 
       {/* HEAD GROUP */}
@@ -70,37 +69,42 @@ export const RiyaCharacter: React.FC<CharacterProps> = ({
         id="riya_head"
         transform={`translate(300, 335) rotate(${headRot}) translate(-300, -335) translate(0, ${headY})`}
       >
-        {/* Neck */}
-        <path d="M 270 360 L 270 480 L 330 480 L 330 360 Z" fill="#F4C2AB" />
+        {/* Natural Warm Indian Skin Neck */}
+        <path d="M 268 355 L 268 475 L 332 475 L 332 355 Z" fill="#E29B63" />
+        <path d="M 268 355 C 280 375, 320 375, 332 355 L 332 385 L 268 385 Z" fill="#C97E4A" opacity="0.5" />
 
-        {/* Hair - Back Wavy Ponytail Volume */}
-        <path
-          d="M 150 220 C 150 80, 450 80, 450 220 C 460 340, 430 420, 390 440 C 410 320, 390 130, 300 130 C 210 130, 190 320, 210 440 C 170 420, 140 340, 150 220 Z"
-          fill="#451A03"
-        />
+        {/* Delicate Gold Ear Studs */}
+        <circle cx="182" cy="312" r="5" fill="#F59E0B" />
+        <circle cx="418" cy="312" r="5" fill="#F59E0B" />
 
         {/* Ears */}
-        <circle cx="185" cy="310" r="24" fill="#FBD5C2" />
-        <circle cx="415" cy="310" r="24" fill="#FBD5C2" />
+        <circle cx="185" cy="310" r="24" fill="#E29B63" />
+        <circle cx="415" cy="310" r="24" fill="#E29B63" />
 
-        {/* Face Shape */}
+        {/* Realistic Human Face Proportions (Warm Indian Skin) */}
         <path
-          d="M 195 240 C 195 140, 405 140, 405 240 C 405 365, 355 415, 300 415 C 245 415, 195 365, 195 240 Z"
-          fill="url(#riya_skin)"
+          d="M 192 235 C 192 135, 408 135, 408 235 C 408 360, 355 412, 300 412 C 245 412, 192 360, 192 235 Z"
+          fill="#F4C7A5"
           filter="url(#riya_shadow)"
         />
 
         {/* Rosy Cheeks (Blush) */}
-        <ellipse cx="225" cy="310" rx="18" ry="10" fill="#FDA4AF" opacity="0.45" />
-        <ellipse cx="375" cy="310" rx="18" ry="10" fill="#FDA4AF" opacity="0.45" />
+        <ellipse cx="228" cy="308" rx="20" ry="11" fill="#F87171" opacity="0.32" />
+        <ellipse cx="372" cy="308" rx="20" ry="11" fill="#F87171" opacity="0.32" />
 
-        {/* Hair - Front Bangs */}
+        {/* Natural Voluminous Layered Dark Hair (Back) */}
         <path
-          d="M 175 210 C 190 110, 260 95, 340 100 C 420 105, 430 160, 420 220 C 390 160, 350 160, 310 180 C 270 200, 220 180, 175 210 Z"
-          fill="url(#riya_hair)"
+          d="M 140 210 C 140 70, 460 70, 460 210 C 472 335, 440 425, 395 445 C 418 315, 395 120, 300 120 C 205 120, 182 315, 205 445 C 160 425, 128 335, 140 210 Z"
+          fill="#1F1610"
         />
-        {/* Cute Emerald Hair Clip */}
-        <rect x="360" y="145" width="28" height="10" rx="5" fill="#10B981" transform="rotate(15, 360, 145)" />
+
+        {/* Soft Wavy Hair Strands Framing Face */}
+        <path
+          d="M 165 200 C 180 95, 255 80, 340 85 C 420 90, 435 150, 425 215 C 395 150, 355 150, 315 172 C 275 194, 218 172, 165 200 Z"
+          fill="#2E1C13"
+        />
+        <path d="M 165 230 C 175 320, 195 380, 210 420" stroke="#2E1C13" strokeWidth="7" strokeLinecap="round" fill="none" />
+        <path d="M 435 230 C 425 320, 405 380, 390 420" stroke="#2E1C13" strokeWidth="7" strokeLinecap="round" fill="none" />
 
         {/* Eyebrows */}
         <RiyaEyebrows state={eyebrowState} />
@@ -108,8 +112,8 @@ export const RiyaCharacter: React.FC<CharacterProps> = ({
         {/* Eyes (Left & Right) */}
         <RiyaEyes state={eyeState} />
 
-        {/* Cute Button Nose */}
-        <path d="M 296 295 Q 300 302 304 295" stroke="#E2A690" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+        {/* Delicate Natural Nose */}
+        <path d="M 298 275 L 295 305 L 305 308" stroke="#C97E4A" strokeWidth="3" strokeLinecap="round" fill="none" />
 
         {/* Dynamic Mouth (Visemes) */}
         <g transform="translate(300, 355)">
