@@ -98,13 +98,14 @@ Jab bhi user video banane ya script likhne bole:
 
 ---
 
-## 6. 🛑 Mandatory User Review & Approval Gate (Pehle Permission, Fir Git Push)
-> **Core Rule:** Jab bhi koi nayi video banegi, AI pehle **Script, Scene Direction aur Images/Visuals** chat me user ko dikhayega aur unki explicit permission lega.
+## 6. 🛑 Mandatory User Review & Visual Approval Gate (Script Likhna Hai, Visuals Generate Karke Dikhana Hai)
+> **Core Rule:** Jab bhi koi nayi video banegi, AI ko characters aur scenes ka text description likhne ke bajaye **ACTUAL IMAGES GENERATE KARKE DIKHANI HAIN**, aur script ko clean dialogs/scenes me likhna hai.
 
-* **Strict 3-Step Approval Protocol:**
-  1. **Show Script & Visuals First:** Har video ke liye pehle scene-by-scene script aur uske visuals/images user ke saamne present karo.
-  2. **Ask Explicit Permission:** User se clear permission maango: *"Kya ye script aur visuals aapko pasand aaye? Kya hum ise GitHub me push karke render process start karein?"*
-  3. **No Git Push Without Green Signal:** Jab tak user explicitly approve ("Haan", "Go ahead", "Push kardo") na kare, tab tak GitHub par push ya render start nahi karna hai.
+* **Strict Protocol:**
+  1. **Script in Clean Text:** Script ko scene-by-scene clean text me likho (bina lambe-chaude character description kiye).
+  2. **Generate Actual Images (No Pure Text Visuals):** Har scene aur character ki actual image cloud AI se generate karo aur chat me user ko dikhao. Sirf text prompt ya description padhane ke bajaye real generated visual image dikhana mandatory hai.
+  3. **Ask Explicit Permission:** User ko script aur actual generated images dikha kar permission maango: *"Kya ye script aur images theek hain? Kya main ise project me save karke cloud render setup karun?"*
+  4. **No Git Push Without Green Signal:** Jab tak user explicitly approve ("Haan", "Go ahead", "Push kardo") na kare, tab tak GitHub par push ya render start nahi karna hai.
 
 
 
