@@ -27,6 +27,8 @@ _temp_*
 scratch/
 exports/
 **/output/*.mp4
+cartoon/*.mp4
+downloads/*.mp4
 
 # Operating System Files
 .DS_Store
