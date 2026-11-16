@@ -1,0 +1,8 @@
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\audio\line1_ramesh.mp3'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\audio\line2_priya.mp3'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\audio\line3_ramesh.mp3'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\audio\line4_priya.mp3'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\audio\line5_ramesh.mp3'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\audio\line6_priya.mp3'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\audio\line7_ramesh.mp3'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\audio\line8_priya.mp3'

@@ -1,0 +1,8 @@
+file 'C:\Users\yashk\vibdecoding\video_output\shop_sofa_duo_3d\clips\sofa_shot1.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_sofa_duo_3d\clips\sofa_shot2.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_sofa_duo_3d\clips\sofa_shot3.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_sofa_duo_3d\clips\sofa_shot4.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_sofa_duo_3d\clips\sofa_shot5.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_sofa_duo_3d\clips\sofa_shot6.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_sofa_duo_3d\clips\sofa_shot7.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_sofa_duo_3d\clips\sofa_shot8.mp4'
