@@ -35,7 +35,7 @@ for idx, (img_name, out_name, prompt) in enumerate(clips):
     print(f"\n🎬 Rendering Clip {idx+1}/6: {img_name}...")
     t0 = time.time()
     
-    for attempt in range(4):
+    for attempt in range(6):
         try:
             res = client.predict(
                 prompt=prompt,
@@ -55,9 +55,9 @@ for idx, (img_name, out_name, prompt) in enumerate(clips):
             )
             break
         except Exception as err:
-            if attempt < 3:
-                print(f"⏳ Queue busy ({err}). Waiting 15s to retry ({attempt+2}/4)...")
-                time.sleep(15)
+            if attempt < 5:
+                print(f"⏳ Queue busy ({err}). Waiting 25s to retry ({attempt+2}/6)...")
+                time.sleep(25)
             else:
                 raise err
                 

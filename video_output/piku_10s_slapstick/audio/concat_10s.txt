@@ -1,2 +1,0 @@
-file 'C:/Users/yashk/vibdecoding/video_output/piku_10s_slapstick/audio/padded_1.mp3'
-file 'C:/Users/yashk/vibdecoding/video_output/piku_10s_slapstick/audio/padded_2.mp3'
