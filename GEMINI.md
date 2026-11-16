@@ -110,5 +110,27 @@ Jab bhi user video banane ya script likhne bole:
   3. **Ask Explicit Permission:** User ko script aur actual generated images dikha kar permission maango: *"Kya ye script aur images theek hain? Kya main ise project me save karke cloud render setup karun?"*
   4. **No Git Push Without Green Signal:** Jab tak user explicitly approve ("Haan", "Go ahead", "Push kardo") na kare, tab tak GitHub par push ya render start nahi karna hai.
 
+---
+
+## 7. 🚦 Mandatory Pre-Work Understanding & Confirmation Gate (Prompt Samjho & Short Me Pucho)
+> **Core Rule:** Har baar jab bhi user koi nayi video banane ya script likhne bole, AI ko direct kaam shuru karne, coding karne ya Colab link banane se PEHELE user ke prompt ko analyze karke short summary me confirm karna hoga:
+> *"Maine aapke diye prompt se ye samjha hai: ... Kya ye sahi hai? Kya main ispe kaam start karun aur Colab link ready karun?"*
+
+* **Strict 3-Step Protocol:**
+  1. **Synthesize & Summarize in Short:** Pehle user ke prompt se 4 core points identify karo:
+     - 🎯 **Story & Goal:** Video kiske liye hai aur kya message hai (1 line).
+     - 🎭 **Characters & Scene:** Kaun-kaun characters hain aur kahan baithe/khade hain (e.g. living room sofa, kirana dukan, etc.).
+     - 🗣️ **Animation & Lip-Sync:** Muh se bolne wala actual lip-sync, top/bg me B-Roll video on-demand.
+     - ⏱️ **Format & Length:** e.g. 45s-60s Reel.
+  2. **Ask Confirmation in Short Words:** User ko bina lambi technical bhasha ke short me pucho:
+     > *"Maine aapke diye prompt se ye samjha hai:*  
+     > *• Concept: ...*  
+     > *• Characters & Scene: ...*  
+     > *• Animation Style: ...*  
+     > *• Duration: ...*  
+     > *Kya ye bilkul sahi hai? Kya hum ispe kaam karein aur Colab link ready karein?"*
+  3. **Wait For User Approval:** Jab user bole *"Haan"*, *"Sahi hai"*, *"Go ahead"*, ya *"Colab link ready karo"*, **SIRF TAB** aage badh kar assets generate karo, video render karo aur Google Colab link provide karo.
+
+
 
 
