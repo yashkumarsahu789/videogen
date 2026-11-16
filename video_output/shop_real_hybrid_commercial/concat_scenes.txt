@@ -1,0 +1,8 @@
+file 'C:/Users/yashk/vibdecoding/video_output/shop_real_hybrid_commercial/clips/hybrid_shot_1.mp4'
+file 'C:/Users/yashk/vibdecoding/video_output/shop_real_hybrid_commercial/clips/hybrid_shot_2.mp4'
+file 'C:/Users/yashk/vibdecoding/video_output/shop_real_hybrid_commercial/clips/hybrid_shot_3.mp4'
+file 'C:/Users/yashk/vibdecoding/video_output/shop_real_hybrid_commercial/clips/hybrid_shot_4.mp4'
+file 'C:/Users/yashk/vibdecoding/video_output/shop_real_hybrid_commercial/clips/hybrid_shot_5.mp4'
+file 'C:/Users/yashk/vibdecoding/video_output/shop_real_hybrid_commercial/clips/hybrid_shot_6.mp4'
+file 'C:/Users/yashk/vibdecoding/video_output/shop_real_hybrid_commercial/clips/hybrid_shot_7.mp4'
+file 'C:/Users/yashk/vibdecoding/video_output/shop_real_hybrid_commercial/clips/hybrid_shot_8.mp4'
