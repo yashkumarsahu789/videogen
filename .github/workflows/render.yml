@@ -98,11 +98,13 @@ jobs:
       - name: 🚀 Publish Direct Download Release
         uses: softprops/action-gh-release@v2
         if: success()
+        continue-on-error: true
         with:
-          tag_name: latest-video
-          name: "🎬 Latest Master Video Render"
+          tag_name: "v${{ github.run_number }}"
+          name: "🎬 Video Render #${{ github.run_number }}"
           body: "Rendered via GitHub Actions Cloud Runners for shop LifeSolveNow."
           fail_on_unmatched_files: false
+          make_latest: true
           files: |
             exports/*.mp4
             video_output/**/output/*.mp4
