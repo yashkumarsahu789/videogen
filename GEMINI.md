@@ -83,18 +83,21 @@ Jab bhi user video banane ya script likhne bole:
 ---
 
 ## 5. 🛍️ Master Mission & Brand Core: shop.lifesolvenow.com
-> **Core Rule:** Is studio ka 100% primary focus sirf aur sirf **shop LifeSolveNow** (`https://shop.lifesolvenow.com/`) ke liye high-converting, viral ad videos aur reels banana hai.
+> **Core Rule:** Is studio ka primary focus **shop LifeSolveNow** (`https://shop.lifesolvenow.com/`) ke liye high-converting, viral ad videos aur reels banana hai.
 
-* **Brand Details & Value Proposition:**
+* **Actual Brand Nature & Role:**
   - **Website:** `https://shop.lifesolvenow.com/`
-  - **Platform:** India's Local Multi-Store Marketplace connecting verified neighbourhood retailers (Kirana, Pharmacy, Food, Local Services) with nearby buyers.
-  - **Key Differentiator:** 
-    - **0% Sales Commission** (Blinkit/Swiggy 20-30% kaat-te hain, yahan 0%).
-    - **Free Starter Plan** (up to 40 products free).
-    - **Pro Plan:** Only **₹99/month** for unlimited products with Google Boost & direct WhatsApp orders!
-  - **Primary Ad Angles:**
-    1. **Dukandar / Retailer Acquisition (B2B):** Local dukan ko bina mehenge app ke digital banana, Google par laana, customers ko wapas dukan se jodna.
-    2. **Local Shopper Discovery (B2C):** Apne aas-paas ki dukan se direct WhatsApp order karna, fast delivery, trusted neighbourhood shopping.
+  - **What it is:** Local Multi-Store Marketplace & Digital Storefront platform that connects neighbourhood shops (Kirana, Medical, Repair, Salon, Local Services) with nearby customers.
+  - **Sales / Payments Boundary:** Platform customer aur shopkeeper ke **sales, payments ya middleman transactions se related koi kaam nahi karta**. (No payment processing, no commission cuts, no money holding).
+  - **What it actually provides to Dukandar / Local Businesses:**
+    1. **Digital Storefront / Online Presence:** Apni local dukan ka online catalog banana, products/services list karna, aur aasan link se share karna.
+    2. **Direct Customer Connection:** Grahak bina kisi complex app ke dukan ko discover karte hain aur direct WhatsApp / Call se judte hain.
+    3. **Local Visibility & Discovery:** Mohalle aur city ke andar verified local shops ki discovery.
+  - **Strictly Prohibited False Claims (DO NOT USE):**
+    - ❌ NO ₹99/month Pro plan (does not exist).
+    - ❌ NO Table QR code for cafe kitchen orders (does not exist).
+    - ❌ NO comparison with Swiggy/Zomato/Blinkit 20-30% delivery commission cuts (not applicable).
+    - ❌ NO handling UPI payments or holding money in wallets (sales transactions are directly between customer and shopkeeper).
 
 ---
 
