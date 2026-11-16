@@ -1,0 +1,8 @@
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\clips\shot1.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\clips\shot2.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\clips\shot3.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\clips\shot4.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\clips\shot5.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\clips\shot6.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\clips\shot7.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_duo_reel_3d\clips\shot8.mp4'
