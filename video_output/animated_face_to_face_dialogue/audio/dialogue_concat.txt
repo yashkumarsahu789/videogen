@@ -1,0 +1,6 @@
+file 'turn1_male.mp3'
+file 'turn2_female.mp3'
+file 'turn3_male.mp3'
+file 'turn4_female.mp3'
+file 'turn5_male.mp3'
+file 'turn6_female.mp3'
