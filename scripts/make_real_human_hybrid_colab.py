@@ -21,99 +21,113 @@ nb = {
     "cells": [
         {
             "cell_type": "markdown",
-            "metadata": {},
+            "metadata": {
+                "id": "intro"
+            },
             "source": [
                 "# 👤 LifeSolveNow – 100% Photorealistic Real Human Hybrid Reel (9:16 Vertical)\n",
-                "### 🎬 Real Indian Shopkeeper • Hybrid Production Architecture • Seedance 2.5 & Kling Prompts • SadTalker / LivePortrait Colab GPU\n",
+                "### 🎬 Real Indian Shopkeeper • Hybrid Production Architecture • Seedance 2.5 & Kling Prompts • Free Colab GPU\n",
                 "\n",
                 "[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yashkumarsahu789/videogen/blob/main/Colab_Real_Human_Shop_Hybrid.ipynb)\n",
                 "\n",
                 "---\n",
                 "\n",
-                "### 🌟 Production Architecture (Hybrid Workflow):\n",
-                "- **STEP 1: Character & Scene Assets:** 100% Photorealistic Indian humans (Ramesh Bhaiya at kirana store counter, Priya advisor, customer interactions) — **Zero cartoon / Zero Pixar**.\n",
-                "- **STEP 2: AI Video Prompts:** Exact prompt templates designed for **Seedance 2.5, Kling AI, Luma Dream Machine & Wan2.1** for natural face-to-face and shop dialogue.\n",
-                "- **STEP 3: Hindi Audio & Dialogue:** Empathic shopkeeper script voiced with Microsoft Edge-TTS Neural Hindi (`hi-IN-MadhurNeural` & `hi-IN-SwaraNeural`) + background music ducking.\n",
-                "- **STEP 4: Neural Lip-Sync Engine (Colab Free GPU):** Free T4 GPU compatible **SadTalker / LivePortrait** cell for direct mouth animation.\n",
-                "- **STEP 5: 9:16 Vertical Compositor:** Full 1080 × 1920 Instagram Reel format with clean transparent watermark: `shop.lifesolvenow.com`.\n"
+                "### 🌟 Production Highlights (Colab-First Architecture):\n",
+                "1. **100% Real Indian Humans:** Authentic Indian grocery shopkeeper (Ramesh Bhaiya) & customer interaction — **Zero cartoon / Zero 3D Pixar**.\n",
+                "2. **9:16 Vertical Reel Format:** 1080 × 1920 high definition video ready for Instagram Reels, YouTube Shorts & WhatsApp Status.\n",
+                "3. **Hybrid Workflow:** High-speed cinematic compositing + B-roll cutaways + optional neural talking face model.\n",
+                "4. **Theatrical Audio Mix:** Emotional Hindi voiceover (Edge-TTS Neural) + ducked Indian commercial score.\n",
+                "5. **0% Load on Your Laptop:** Everything runs entirely on Google Colab's cloud servers with instant download.\n"
             ]
         },
         {
             "cell_type": "markdown",
-            "metadata": {},
+            "metadata": {
+                "id": "step1_md"
+            },
             "source": [
-                "## ⚙️ Step 1: Environment & Repository Setup (Free Colab T4 GPU)"
+                "## ⚙️ Step 1: Install Tools & Clone Studio Assets (Run this first)"
             ]
         },
         {
             "cell_type": "code",
             "execution_count": None,
-            "metadata": {},
+            "metadata": {
+                "id": "step1_code"
+            },
             "outputs": [],
             "source": [
-                "# Clone the repository containing all photorealistic assets & code\n",
+                "# Install FFmpeg and system dependencies\n",
+                "!apt-get update -qq && apt-get install -y -qq ffmpeg fonts-dejavu\n",
+                "!pip install -q pillow soundfile edge-tts\n",
+                "\n",
+                "# Clone the repository containing all 9:16 real human assets & production code\n",
                 "!rm -rf /content/videogen\n",
                 "!git clone https://github.com/yashkumarsahu789/videogen.git /content/videogen\n",
                 "%cd /content/videogen\n",
                 "\n",
-                "# Install audio/video & image processing tools\n",
-                "!apt-get update -qq && apt-get install -y -qq ffmpeg fonts-dejavu\n",
-                "!pip install -q pillow soundfile edge-tts\n",
-                "\n",
                 "import torch\n",
-                "gpu_name = torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU (No GPU)'\n",
-                "print(f'✅ Repository Ready! Accelerator: {gpu_name}')"
+                "gpu_name = torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'Standard CPU (No GPU needed for fast-render)'\n",
+                "print(f'\\n✅ Environment Ready! Accelerator: {gpu_name}')"
             ]
         },
         {
             "cell_type": "markdown",
-            "metadata": {},
+            "metadata": {
+                "id": "step2_md"
+            },
             "source": [
                 "## 📋 Step 2: Seedance 2.5 & Kling AI Video Prompts Library\n",
-                "Aap in exact prompts ko **Seedance 2.5 / Kling AI / Luma Dream Machine** me daal kar dynamic cinematic AI video clips generate kar sakte hain:"
+                "Aap in exact prompts ko **Seedance 2.5 / Kling AI / Luma / Wan2.1** me copy karke dynamic cinematic AI video clips generate kar sakte hain:"
             ]
         },
         {
             "cell_type": "code",
             "execution_count": None,
-            "metadata": {},
+            "metadata": {
+                "id": "step2_code"
+            },
             "outputs": [],
             "source": [
                 "prompts = [\n",
                 "    {\n",
-                "        'Scene': 'Ramesh Bhaiya Shopkeeper Counter Dialogue',\n",
+                "        'Scene': '1. Ramesh Bhaiya Kirana Store Counter Dialogue',\n",
                 "        'AI Model': 'Seedance 2.5 / Kling AI 1.5',\n",
                 "        'Prompt': 'Cinematic 9:16 vertical video of a 45-year-old realistic Indian grocery shopkeeper sitting behind his wooden Kirana store counter. He looks into the camera with an expressive, authentic, thoughtful facial expression, speaking in Hindi, natural blinking and gentle hand gestures. Shelves filled with spices, pulses, and grain jars in the warm background. Realistic skin texture, depth of field, high-end commercial ad style, photorealistic, 8k.'\n",
                 "    },\n",
                 "    {\n",
-                "        'Scene': 'Priya Mobile Guidance & Digital Storefront',\n",
+                "        'Scene': '2. Priya Mobile Guidance & Digital Storefront',\n",
                 "        'AI Model': 'Seedance 2.5 / Kling AI 1.5',\n",
                 "        'Prompt': 'Medium 9:16 vertical shot of a modern, smart 27-year-old Indian woman standing inside a bright room, holding up a sleek smartphone displaying an online digital storefront catalog. She smiles warmly at the viewer, pointing enthusiastically at the phone screen, explaining how easy it is to share on WhatsApp. Natural hair movement, friendly posture, photorealistic, clean studio lighting.'\n",
                 "    },\n",
                 "    {\n",
-                "        'Scene': 'Customer Smartphone Direct Order at Kirana',\n",
+                "        'Scene': '3. Customer Smartphone Direct Order at Kirana',\n",
                 "        'AI Model': 'Seedance 2.5 / Kling AI 1.5',\n",
                 "        'Prompt': 'Close-up over-the-shoulder 9:16 vertical shot of an Indian customer holding a smartphone showing a local Kirana store WhatsApp chat with product orders, handing cash directly to the smiling shopkeeper at the wooden counter. Genuine neighbourhood shopping moment, zero middlemen, crisp natural daylight, photorealistic.'\n",
                 "    }\n",
                 "]\n",
                 "\n",
-                "for i, p in enumerate(prompts, 1):\n",
-                "    print(f'\\n✨ [PROMPT {i}] {p[\"Scene\"]} ({p[\"AI Model\"]})')\n",
-                "    print(f'\"\"\"{p[\"Prompt\"]}\"\"\"')\n"
+                "for p in prompts:\n",
+                "    print(f'✨ [{p[\"Scene\"]}] -> Model: {p[\"AI Model\"]}')\n",
+                "    print(f'\"\"\"{p[\"Prompt\"]}\"\"\"\\n')"
             ]
         },
         {
             "cell_type": "markdown",
-            "metadata": {},
+            "metadata": {
+                "id": "step3_md"
+            },
             "source": [
-                "## 🎬 Step 3: Run 9:16 Real Human Hybrid Production Pipeline\n",
-                "Yeh script 100% photorealistic assets, dialogue turns, audio mixing, aur clean branding ko combine karke final vertical reel compile karega:"
+                "## 🎬 Step 3: Render Full 9:16 Real Human Hybrid Reel (1080 × 1920)\n",
+                "Yeh script **100% photorealistic Indian assets, 8 dialogue cuts, BGM mixing aur clean top branding** ko combine karke final vertical reel compile karta hai:"
             ]
         },
         {
             "cell_type": "code",
             "execution_count": None,
-            "metadata": {},
+            "metadata": {
+                "id": "step3_code"
+            },
             "outputs": [],
             "source": [
                 "# Run the dedicated 9:16 real human hybrid pipeline\n",
@@ -121,60 +135,71 @@ nb = {
                 "\n",
                 "import os\n",
                 "out_video = 'video_output/real_human_shop_hybrid/output/real_human_shop_hybrid_master.mp4'\n",
+                "if not os.path.exists(out_video):\n",
+                "    out_video = 'exports/real_human_shop_hybrid_master.mp4'\n",
+                "\n",
                 "if os.path.exists(out_video):\n",
                 "    sz_mb = os.path.getsize(out_video) / (1024 * 1024)\n",
-                "    print(f'\\n🎉 9:16 VERTICAL REEL RENDERED SUCCESSFULLY!')\n",
-                "    print(f'📁 Path: {out_video}')\n",
+                "    print(f'\\n🎉 9:16 VERTICAL MASTER REEL RENDERED SUCCESSFULLY!')\n",
+                "    print(f'📁 Output File: {out_video}')\n",
                 "    print(f'📊 Size: {sz_mb:.2f} MB | Resolution: 1080x1920 | Duration: 57.6s')\n",
                 "else:\n",
-                "    print('⚠️ Render failed. Please inspect logs.')"
+                "    print('⚠️ Error rendering video. Please check terminal output above.')"
             ]
         },
         {
             "cell_type": "markdown",
-            "metadata": {},
+            "metadata": {
+                "id": "step4_md"
+            },
             "source": [
-                "## 🤖 Step 4 (Colab GPU Neural Lip-Sync): SadTalker / LivePortrait Talking Face\n",
-                "Agar aapko character ke face par neural audio-driven lip sync (asli muh hilana) run karna hai toh is cell ko use karein:"
+                "## 🤖 Step 4 (Optional): Run SadTalker Neural Lip-Sync on Colab GPU\n",
+                "*Agar aapko shopkeeper ke photo par neural AI mouth animation render karna hai toh is cell ko run karein:*"
             ]
         },
         {
             "cell_type": "code",
             "execution_count": None,
-            "metadata": {},
+            "metadata": {
+                "id": "step4_code"
+            },
             "outputs": [],
             "source": [
-                "# @title Run Neural Lip-Sync on Shopkeeper Face (Free Colab GPU)\n",
+                "# @title Optional: Run Neural Talking Face (SadTalker)\n",
                 "RUN_NEURAL_LIPSYNC = False # @param {type:\"boolean\"}\n",
                 "\n",
                 "if RUN_NEURAL_LIPSYNC:\n",
-                "    print('🚀 Setting up SadTalker Neural Lip-Sync on Colab GPU...')\n",
+                "    print('🚀 Setting up SadTalker on Cloud GPU...')\n",
                 "    !git clone https://github.com/OpenTalker/SadTalker.git /content/SadTalker 2>/dev/null || true\n",
                 "    %cd /content/SadTalker\n",
                 "    !pip install -q kornia yacs facexlib torchaudio\n",
-                "    print('✅ SadTalker Environment Prepared!')\n",
-                "    print('To run inference on Ramesh Bhaiya portrait:')\n",
-                "    print('!python inference.py --driven_audio /content/videogen/video_output/real_human_shop_hybrid/audio/line1_ramesh.mp3 --source_image /content/videogen/video_output/real_human_shop_hybrid/assets/ramesh_bhaiya_counter.jpg --result_dir /content/videogen/video_output/real_human_shop_hybrid/output --still --preprocess full')\n",
+                "    print('✅ SadTalker Environment Ready on GPU!')\n",
                 "    %cd /content/videogen\n",
                 "else:\n",
-                "    print('⏩ Using high-speed Hybrid Motion Compositor (0 wait time)!')"
+                "    print('⏩ Using fast-track hybrid reel assembly (Ready instantly without waiting for 5GB download)!')"
             ]
         },
         {
             "cell_type": "markdown",
-            "metadata": {},
+            "metadata": {
+                "id": "step5_md"
+            },
             "source": [
-                "## 📱 Step 5: Full 9:16 Vertical Reel Player"
+                "## 📱 Step 5: Full Interactive 9:16 Video Player & 1-Click Download\n",
+                "Neeche diye player me video preview karein aur 1-click me apne device me download karein:"
             ]
         },
         {
             "cell_type": "code",
             "execution_count": None,
-            "metadata": {},
+            "metadata": {
+                "id": "step5_code"
+            },
             "outputs": [],
             "source": [
                 "from IPython.display import HTML, display\n",
                 "import os\n",
+                "from base64 import b64encode\n",
                 "\n",
                 "video_path = 'video_output/real_human_shop_hybrid/output/real_human_shop_hybrid_master.mp4'\n",
                 "if not os.path.exists(video_path):\n",
@@ -182,42 +207,59 @@ nb = {
                 "\n",
                 "if os.path.exists(video_path):\n",
                 "    sz_mb = os.path.getsize(video_path) / (1024 * 1024)\n",
-                "    print(f'✅ Video ready for preview! Size: {sz_mb:.2f} MB')\n",
+                "    print(f'✅ Video ready for playback! Size: {sz_mb:.2f} MB')\n",
                 "    \n",
-                "    # Sleek 9:16 mobile mock preview container\n",
+                "    # Embed via base64 for guaranteed playback inside Colab\n",
+                "    video_data = open(video_path, 'rb').read()\n",
+                "    b64_video = b64encode(video_data).decode('utf-8')\n",
+                "    \n",
                 "    display(HTML(f'''\n",
-                "    <div style=\"display: flex; justify-content: center; align-items: center; padding: 20px 0; background: #020617; border-radius: 16px;\">\n",
-                "        <div style=\"width: 360px; height: 640px; background: #000; border-radius: 28px; border: 4px solid #334155; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); position: relative;\">\n",
-                "            <video width=\"360\" height=\"640\" controls autoplay loop style=\"object-fit: cover;\">\n",
-                "                <source src=\"{video_path}\" type=\"video/mp4\">\n",
-                "                Your browser does not support the video tag.\n",
+                "    <div style=\"background: linear-gradient(135deg, #020617, #0f172a); padding: 25px; border-radius: 20px; border: 1px solid #38bdf8; text-align: center; color: white; max-width: 440px; margin: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.8); font-family: sans-serif;\">\n",
+                "        <h3 style=\"color: #38bdf8; margin-top: 0; margin-bottom: 6px;\">👤 LifeSolveNow – Real Human Hybrid Reel</h3>\n",
+                "        <p style=\"color: #94a3b8; font-size: 13px; margin-top: 0; margin-bottom: 16px;\">1080 × 1920 (9:16) • Clean Top Watermark • 57.6s</p>\n",
+                "        <div style=\"border-radius: 16px; overflow: hidden; border: 2px solid #334155; box-shadow: 0 10px 25px rgba(0,0,0,0.7); display: inline-block; line-height: 0;\">\n",
+                "            <video width=\"340\" height=\"600\" controls autoplay loop style=\"object-fit: cover;\">\n",
+                "                <source src=\"data:video/mp4;base64,{b64_video}\" type=\"video/mp4\">\n",
+                "                Your browser does not support HTML5 video.\n",
                 "            </video>\n",
+                "        </div>\n",
+                "        <div style=\"margin-top: 20px;\">\n",
+                "            <a href=\"data:video/mp4;base64,{b64_video}\" download=\"real_human_shop_hybrid_master.mp4\" style=\"background: linear-gradient(135deg, #2563eb, #38bdf8); color: white; padding: 12px 28px; border-radius: 30px; font-weight: bold; text-decoration: none; font-size: 15px; display: inline-block; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);\">\n",
+                "                📥 Download 9:16 Video (.mp4)\n",
+                "            </a>\n",
                 "        </div>\n",
                 "    </div>\n",
                 "    '''))\n",
                 "else:\n",
-                "    print('❌ Video file not found.')"
+                "    print('❌ Video file not found. Please run Step 3 first.')"
             ]
         },
         {
             "cell_type": "markdown",
-            "metadata": {},
+            "metadata": {
+                "id": "step6_md"
+            },
             "source": [
-                "## 💾 Step 6: 1-Click Download Video to Your Device"
+                "## 💾 Step 6: Direct Browser File Download"
             ]
         },
         {
             "cell_type": "code",
             "execution_count": None,
-            "metadata": {},
+            "metadata": {
+                "id": "step6_code"
+            },
             "outputs": [],
             "source": [
                 "from google.colab import files\n",
                 "import os\n",
                 "\n",
                 "video_path = 'video_output/real_human_shop_hybrid/output/real_human_shop_hybrid_master.mp4'\n",
+                "if not os.path.exists(video_path):\n",
+                "    video_path = 'exports/real_human_shop_hybrid_master.mp4'\n",
+                "\n",
                 "if os.path.exists(video_path):\n",
-                "    print('⬇️ Downloading 9:16 photorealistic reel to your computer...')\n",
+                "    print('⬇️ Triggering browser download...')\n",
                 "    files.download(video_path)\n",
                 "else:\n",
                 "    print('❌ Video file not found.')"
@@ -229,4 +271,4 @@ nb = {
 with open(r'c:\Users\yashk\vibdecoding\Colab_Real_Human_Shop_Hybrid.ipynb', 'w', encoding='utf-8') as f:
     json.dump(nb, f, indent=2)
 
-print("Created Colab_Real_Human_Shop_Hybrid.ipynb successfully!")
+print("Updated Colab_Real_Human_Shop_Hybrid.ipynb successfully!")
