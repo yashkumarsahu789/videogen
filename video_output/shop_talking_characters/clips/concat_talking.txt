@@ -1,0 +1,8 @@
+file 'C:\Users\yashk\vibdecoding\video_output\shop_talking_characters\clips\talking_shot1.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_talking_characters\clips\talking_shot2.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_talking_characters\clips\talking_shot3.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_talking_characters\clips\talking_shot4.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_talking_characters\clips\talking_shot5.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_talking_characters\clips\talking_shot6.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_talking_characters\clips\talking_shot7.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_talking_characters\clips\talking_shot8.mp4'
