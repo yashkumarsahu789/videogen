@@ -53,9 +53,14 @@ def render_single_project(project_dir: Path):
 
     # 1. Check if custom python render script exists
     custom_render = code_dir / "render.py"
+    if not custom_render.exists():
+        py_candidates = list(code_dir.glob("render*.py")) + list(code_dir.glob("generate*.py"))
+        if py_candidates:
+            custom_render = py_candidates[0]
+            
     if custom_render.exists():
         print(f"▶ Running custom script: {custom_render}")
-        res = subprocess.run([sys.executable, str(custom_render)], cwd=str(code_dir))
+        res = subprocess.run([sys.executable, str(custom_render)], cwd=str(ROOT_DIR))
         return res.returncode == 0
 
     # 2. Check for Remotion structure
@@ -169,7 +174,14 @@ def is_renderable(p: Path) -> bool:
     if not p.is_dir():
         return False
     code = p / "code"
-    return (code / "src" / "index.ts").exists() or (code / "render.py").exists()
+    if not code.exists():
+        return False
+    return (
+        (code / "src" / "index.ts").exists()
+        or (code / "render.py").exists()
+        or len(list(code.glob("render*.py"))) > 0
+        or len(list(code.glob("generate*.py"))) > 0
+    )
 
 def get_latest_project() -> Path:
     video_output = ROOT_DIR / "video_output"

@@ -5,12 +5,13 @@ import subprocess
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
-base_dir = Path("video_output/animated_face_to_face_dialogue")
+base_dir = Path(__file__).resolve().parent.parent
+root_dir = base_dir.parent.parent
 assets_dir = base_dir / "assets"
 sprites_dir = assets_dir / "sprites"
 audio_dir = base_dir / "audio"
 output_dir = base_dir / "output"
-exports_dir = Path("exports")
+exports_dir = root_dir / "exports"
 
 output_dir.mkdir(parents=True, exist_ok=True)
 exports_dir.mkdir(parents=True, exist_ok=True)
