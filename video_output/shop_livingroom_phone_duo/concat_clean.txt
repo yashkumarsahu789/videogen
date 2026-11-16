@@ -1,0 +1,8 @@
+file 'C:\Users\yashk\vibdecoding\video_output\shop_livingroom_phone_duo\clips\clean_shot1.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_livingroom_phone_duo\clips\clean_shot2.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_livingroom_phone_duo\clips\clean_shot3.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_livingroom_phone_duo\clips\clean_shot4.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_livingroom_phone_duo\clips\clean_shot5.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_livingroom_phone_duo\clips\clean_shot6.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_livingroom_phone_duo\clips\clean_shot7.mp4'
+file 'C:\Users\yashk\vibdecoding\video_output\shop_livingroom_phone_duo\clips\clean_shot8.mp4'
